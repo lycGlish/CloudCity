@@ -147,14 +147,17 @@ function deleteInfo(infoId) {
         confirmButtonColor: "#DD6B55",
     }).then(function (isConfirm) {
         if (isConfirm) {
+            swal("删除信息中，请稍后！", {buttons: false});
             $.ajax({
                 url: "/info/feign/deleteInfoByInfoId/" + infoId,
                 method: 'get',
                 success: function () {
+                    swal.close();
                     swal('成功', '删除信息成功!', 'success');
                     $('#messageTable').bootstrapTable('refresh');
                 },
                 error: function () {
+                    swal.close();
                     swal('失败', '删除信息失败!', 'error');
                 }
             });

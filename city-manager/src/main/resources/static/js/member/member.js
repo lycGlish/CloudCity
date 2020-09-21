@@ -2,6 +2,7 @@ function updateMember() {
     var id = document.getElementById("id").value;
     var name = document.getElementById("name").value;
     var memberLevel = document.getElementById("memberLevel").value;
+    swal("修改用户信息中，请稍后！", {buttons: false});
     $.ajax({
         type: "POST",
         url: "/member/feign/updateMember",
@@ -13,12 +14,14 @@ function updateMember() {
             "memberLevel": memberLevel
         }),
         success: function (data) {
+            swal.close();
             console.log("data is :" + data);
             swal("成功！", "修改成功", "success");
             $("#editModal").modal('hide');
             $('#memberTable').bootstrapTable('refresh');
         },
         error: function () {
+            swal.close();
             swal("失败！", "修改失败", "error");
             return false;
         }
@@ -56,14 +59,17 @@ function deleteLogicMember(id) {
         confirmButtonColor: "#DD6B55",
     }).then(function (isConfirm) {
         if (isConfirm) {
+            swal("封禁用户中，请稍后！", {buttons: false});
             $.ajax({
                 url: "/member/feign/deleteLogicMember/" + id,
                 method: 'get',
                 success: function () {
+                    swal.close();
                     swal('成功', '封禁用户成功!', 'success');
                     $('#memberTable').bootstrapTable('refresh');
                 },
                 error: function () {
+                    swal.close();
                     swal('失败', '封禁用户失败!', 'error');
                 }
             });

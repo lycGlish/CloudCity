@@ -1,4 +1,5 @@
 function login() {
+    swal("登陆中，请稍后！",{buttons: false});
     var phone = document.getElementById("phone").value;
     var password = document.getElementById("password").value;
     $.ajax({
@@ -11,6 +12,7 @@ function login() {
             "password": password
         }),
         success: function (data) {
+            swal.close();
             if(data.data!=null){
                 window.location.href="http://localhost:8000"
             }else {
@@ -18,6 +20,7 @@ function login() {
             }
         },
         error: function () {
+            swal.close();
             swal('失败', '发起登录请求错误，请稍后再试！', 'error');
         }
     });

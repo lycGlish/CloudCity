@@ -11,6 +11,7 @@ function addOrUpdateCamera() {
     } else {
         address = "updateCamera";
     }
+    swal(address + "摄像头中，请稍后！", {buttons: false});
     $.ajax({
         type: "POST",
         dataType: "json",
@@ -23,12 +24,14 @@ function addOrUpdateCamera() {
             "areaCode": areaCode
         }),
         success: function (data) {
+            swal.close();
             console.log("data is :" + data);
             swal("成功", "摄像头" + title + "成功！", "success");
             $("#cameraModal").modal('hide');
             $('#cameraTable').bootstrapTable('refresh');
         },
         error: function () {
+            swal.close();
             swal("失败", "摄像头" + title + "失败！", "error");
         }
     });
@@ -188,14 +191,17 @@ function deleteCamera(cameraId) {
         confirmButtonColor: "#DD6B55",
     }).then(function (isConfirm) {
         if (isConfirm) {
+            swal("删除摄像头中，请稍后！", {buttons: false});
             $.ajax({
                 url: "/manager/menu/deleteMenuById/" + cameraId,
                 method: 'get',
                 success: function () {
+                    swal.close();
                     swal('成功', '删除摄像头信息成功!', 'success');
                     $('#cameraTable').bootstrapTable('refresh');
                 },
                 error: function () {
+                    swal.close();
                     swal('失败', '删除摄像头信息失败!', 'error');
                 }
             });

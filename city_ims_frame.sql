@@ -11,7 +11,7 @@
  Target Server Version : 80021
  File Encoding         : 65001
 
- Date: 21/09/2020 12:24:55
+ Date: 21/09/2020 17:27:38
 */
 
 SET NAMES utf8mb4;
@@ -72,6 +72,7 @@ CREATE TABLE `ims_info`  (
   `info_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '消息名称',
   `info_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '消息描述',
   `info_image` bigint(0) NULL DEFAULT NULL COMMENT '消息附属图片',
+  `info_uploader` bigint(0) NULL DEFAULT NULL COMMENT '上传人',
   `info_source` int(0) NULL DEFAULT NULL COMMENT '上传来源（1用户2摄像头）',
   `info_status` int(0) NULL DEFAULT NULL COMMENT '消息地点状态（0识别错误1无积水2积水3内涝4冰雪）',
   `info_area` int(0) NULL DEFAULT NULL COMMENT '消息地区id',

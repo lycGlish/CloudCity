@@ -234,7 +234,7 @@
                     <div class="col-md-4">
                         <div class="card card-dark bg-secondary-gradient">
                             <div class="card-body pb-0">
-                                <h2 class="mb-2">27</h2>
+                                <h2 class="mb-2" th:text="${memberCount}"></h2>
                                 <p>注册用户</p>
                                 <div class="pull-in sparkline-fix chart-as-background">
                                     <div id="lineChart2">
@@ -249,8 +249,8 @@
                     <div class="col-md-4">
                         <div class="card card-dark bg-success2">
                             <div class="card-body pb-0">
-                                <h2 class="mb-2" th:text="${imageCount}"></h2>
-                                <p>图片数量</p>
+                                <h2 class="mb-2" th:text="${infoCount}"></h2>
+                                <p>历史数据</p>
                                 <div class="pull-in sparkline-fix chart-as-background">
                                     <div id="lineChart3">
                                         <canvas width="327" height="70"
@@ -266,7 +266,7 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title">图片统计</div>
+                                <div class="card-title">数据统计</div>
                             </div>
                             <div class="card-body">
                                 <div class="chart-container">

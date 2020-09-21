@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient("city-user")
 public interface MemberFeignService {
 
+    @GetMapping("/user/member/count")
+    R count();
+
     @GetMapping("/user/member/deleteLogicMember/{memberId}")
     R deleteLogicMember(@PathVariable("memberId") Long memberId);
 

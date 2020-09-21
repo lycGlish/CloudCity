@@ -4,6 +4,7 @@ function updateInfo() {
     var infoDescription = document.getElementById("infoDescription").value;
     var infoSource = document.getElementById("infoSource").value;
     var infoStatus = document.getElementById("infoStatus").value;
+    swal("更新信息中，请稍后！", {buttons: false});
     $.ajax({
         type: "POST",
         url: "/info/feign/updateInfo",
@@ -17,12 +18,14 @@ function updateInfo() {
             "infoStatus": infoStatus
         }),
         success: function (data) {
+            swal.close();
             console.log("data is :" + data);
             swal("成功！", "修改成功", "success");
             $("#editModal").modal('hide');
             $('#messageTable').bootstrapTable('refresh');
         },
         error: function () {
+            swal.close();
             swal("失败！", "修改失败", "error");
             return false;
         }
@@ -61,14 +64,17 @@ function deleteLogicInfo(infoId) {
         confirmButtonColor: "#DD6B55",
     }).then(function (isConfirm) {
         if (isConfirm) {
+            swal("下架信息中，请稍后！", {buttons: false});
             $.ajax({
                 url: "/info/feign/deleteLogicInfoByInfoId/" + infoId,
                 method: 'get',
                 success: function () {
+                    swal.close();
                     swal('成功', '下架信息成功!', 'success');
                     $('#messageTable').bootstrapTable('refresh');
                 },
                 error: function () {
+                    swal.close();
                     swal('失败', '下架信息失败!', 'error');
                 }
             });

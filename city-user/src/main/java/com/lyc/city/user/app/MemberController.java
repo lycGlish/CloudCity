@@ -28,6 +28,12 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
+    @GetMapping("/count")
+    public R count() {
+        int count = memberService.count();
+        return R.ok().put("data", count);
+    }
+
     @GetMapping("/getMemberById")
     public R getMemberById(@RequestParam Long memberId) {
         MemberEntity memberEntity = memberService.getMemberById(memberId);
