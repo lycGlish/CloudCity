@@ -13,7 +13,7 @@ function saveTask() {
         success: function (data) {
             console.log("data is :" + data);
             setTimeout(function(){swal('成功', '添加任务成功!', 'success'); },100);
-            setTimeout(function(){window.location.reload(); },2000);
+            setTimeout(function(){window.location.reload(); },10000);
         },
         error: function () {
             swal("失败！", "新增任务失败", "error");
@@ -52,7 +52,7 @@ function accomplish(taskId) {
                 method: 'get',
                 success: function () {
                     setTimeout(function(){swal('成功', '完成任务成功!', 'success'); },100);
-                    setTimeout(function(){window.location.reload(); },2000);
+                    setTimeout(function(){window.location.reload(); },5000);
                 },
                 error: function () {
                     swal('失败', '完成任务失败!', 'error');

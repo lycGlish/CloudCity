@@ -39,6 +39,10 @@ public class InfoEntity implements Serializable {
 	 */
 	private Long infoImage;
 	/**
+	 * 上传人
+	 */
+	private Long infoUploader;
+	/**
 	 * 上传来源（1用户2摄像头）
 	 */
 	private Integer infoSource;

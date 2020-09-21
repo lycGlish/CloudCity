@@ -10,7 +10,7 @@
     <link href="../static/css/linearicons.css" rel="stylesheet">
     <link href="../static/css/owl.carousel.css" rel="stylesheet">
     <link href="../static/css/owl.theme.css" rel="stylesheet">
-    <link rel="shortcut icon" href="../static/images/logo.jpg">
+    <link href="../static/images/logo.jpg" rel="shortcut icon">
     <link href="../static/css/style.css" rel="stylesheet">
     <link href="../static/css/responsive.css" rel="stylesheet">
     <link href="../static/css/sweetalert.css" rel="stylesheet">
@@ -49,7 +49,9 @@
                                 </button>
                             </li>
                             <li>
-                                <button type="button" class="btn btn-default navbar-btn">后台登录</button>
+                                <button type="button" class="btn btn-default navbar-btn"
+                                        onclick="toLogin()">用户登录
+                                </button>
                             </li>
                         </ul>
                     </div>
@@ -59,7 +61,7 @@
     </div>
 </header>
 
-<section class="intro">
+<div class="intro">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-8 col-xs-12">
@@ -77,9 +79,9 @@
             </div>
         </div>
     </div>
-</section>
+</div>
 
-<section id="map" class="map">
+<div id="map" class="map">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center">
@@ -91,39 +93,35 @@
             <div class="col-md-12" style="height:750px;border:#ccc solid 1px;" id="allmap"></div>
         </div>
     </div>
-</section>
+</div>
 
-<section id="message" class="message">
-    <div class="container">
-        <div class="row">
-            <div class="h3 pb-5 text-center col-md-12" data-aos="fade-up">
-                <h1 class="section-title">预警查询</h1>
-                <p>以表格的方式展示所有的预警消息</p>
-            </div>
+<div id="message" class="col-md-12">
+    <div class="row">
+        <div class="h3 pb-5 text-center col-md-12" data-aos="fade-up">
+            <h1 class="section-title">预警查询</h1>
+            <p>以表格的方式展示所有的预警消息</p>
         </div>
     </div>
     <div class="col-md-12">
         <table id="messageTable" style="table-layout: fixed;word-break: break-all;">
         </table>
     </div>
-</section>
+</div>
 
-<section id="record" class="record">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 text-center">
-                <h1 class="section-title">记录查询</h1>
-                <p class="section-para">集合所有上传的道路情况记录</p>
-            </div>
+<div id="record" class="col-md-12">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+            <h1 class="section-title">记录查询</h1>
+            <p class="section-para">集合所有上传的道路情况记录</p>
         </div>
     </div>
     <div class="col-md-12 text-center">
         <table id="recordTable" style="table-layout: fixed;word-break: break-all;">
         </table>
     </div>
-</section>
+</div>
 
-<section id="aboutUs" class="aboutUs">
+<div id="aboutUs" class="col-md-12">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center">
@@ -196,7 +194,7 @@
             </div>
         </div>
     </div>
-</section>
+</div>
 
 <!--预警消息模态框-->
 <div class="modal fade modalIndex" id="uploadModal" role="dialog">
@@ -208,7 +206,7 @@
                 </button>
                 <h4 class="modal-title col-sm-3" id="myModalLabel">上传预警信息</h4>
                 <img src="../static/images/hint.png" alt="" title="预警上传坐标默认采用图片自带经纬度，若图片不带经纬度请认真填写地址"
-                     style="width:25px;height:25px">
+                     style="width:25px;height:25px" onclick="imageHint()">
             </div>
             <div class="modal-body">
                 <form id="formTag" method="post" enctype="multipart/form-data">

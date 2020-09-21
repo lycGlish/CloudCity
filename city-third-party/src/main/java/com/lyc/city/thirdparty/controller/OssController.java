@@ -71,8 +71,8 @@ public class OssController {
             PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName, inputStream);
             ossClient.putObject(putObjectRequest);
 
-            //设置返回的url有效期为10年
-            Date expiration = new Date(new Date().getTime() + 10 * 365 * 24 * 60 * 60 * 1000);
+            //设置返回的url有效期为100年
+            Date expiration = new Date(new Date().getTime() + 1000L * 3600L * 24L * 365L * 100L);
             GeneratePresignedUrlRequest req = new GeneratePresignedUrlRequest(bucketName, fileName, HttpMethod.GET);
             req.setExpiration(expiration);
 

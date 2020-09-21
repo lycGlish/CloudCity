@@ -28,11 +28,11 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
-
-    @Autowired
-    private RedissonClient redissonClient;
+    @GetMapping("/getMemberById")
+    public R getMemberById(@RequestParam Long memberId) {
+        MemberEntity memberEntity = memberService.getMemberById(memberId);
+        return R.ok().put("data", memberEntity);
+    }
 
     @PostMapping("/doRegister")
     public R doRegister(@RequestBody MemberEntity memberEntity) {

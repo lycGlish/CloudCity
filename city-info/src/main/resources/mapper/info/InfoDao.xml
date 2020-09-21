@@ -9,6 +9,7 @@
         <result property="infoName" column="info_name"/>
         <result property="infoDescription" column="info_description"/>
         <result property="infoImage" column="info_image"/>
+        <result property="infoUploader" column="info_uploader"/>
         <result property="infoSource" column="info_source"/>
         <result property="infoStatus" column="info_status"/>
         <result property="infoArea" column="info_area"/>

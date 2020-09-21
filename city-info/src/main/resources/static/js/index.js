@@ -321,6 +321,7 @@ function showUploadModal() {
 }
 
 function uploadInfo() {
+    swal("上传消息中，请稍后！",{buttons: false});
     var imgUrl = document.getElementById("imgUrl").value;
     var areaCode = document.getElementById("areaCode").value;
     var infoDescription = document.getElementById("infoDescription").value;
@@ -339,11 +340,13 @@ function uploadInfo() {
             "latitude": latitude
         }),
         success: function (data) {
+            swal.close();
             console.log("data is :" + data);
-            swal("成功", "预警上传成功！", "success");
-            window.location.reload();
+            setTimeout(function(){swal("成功", "预警上传成功！", "success"); },100);
+            setTimeout(function(){window.location.reload(); },10000);
         },
         error: function () {
+            swal.close();
             swal("失败", "预警上传失败！", "error");
         }
     });
@@ -394,6 +397,7 @@ function getCity() {
 
 // 上传图片并回显
 function uploadImg() {
+    swal("上传图片中，请稍后！",{buttons: false});
     $.ajax({
         type: "POST",
         url: "/info/image/upload/image",
@@ -403,6 +407,7 @@ function uploadImg() {
         dataType: "json",
         data: new FormData($("#formTag")[0]),
         success: function (data) {
+            swal.close();
             // 图片回显
             $("#img").attr("src", data.data.url);
             // 图片url存入表单中传入后台保存
@@ -415,7 +420,29 @@ function uploadImg() {
             }
         },
         error: function () {
+            swal.close();
             swal("失败", "ajax图片上传错误！", "error");
         }
+    });
+}
+
+function toLogin() {
+    window.location.href="http://localhost:10000/login";
+}
+
+function imageHint() {
+    swal({
+        title: "上传须知",
+        text: "预警上传坐标默认采用图片自带经纬度，若图片不带经纬度请认真填写地址",
+        icon: 'warning',
+        buttons: {
+            confirm: {
+                text: "知道了",
+                value: true,
+                visible: true,
+                closeModal: true
+            }
+        },
+        confirmButtonColor: "#DD6B55",
     });
 }

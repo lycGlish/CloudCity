@@ -78,4 +78,9 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         memberEntity.setCreateTime(new Date());
         baseMapper.insert(memberEntity);
     }
+
+    @Override
+    public MemberEntity getMemberById(Long memberId) {
+        return baseMapper.selectById(memberId);
+    }
 }
