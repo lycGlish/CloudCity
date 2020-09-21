@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lyc.city.info.dao.InfoDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.lyc.city.entity.InfoEntity" id="infoMap">
+        <result property="infoId" column="info_id"/>
+        <result property="infoName" column="info_name"/>
+        <result property="infoDescription" column="info_description"/>
+        <result property="infoImage" column="info_image"/>
+        <result property="infoSource" column="info_source"/>
+        <result property="infoStatus" column="info_status"/>
+        <result property="infoArea" column="info_area"/>
+        <result property="infoCoordinate" column="info_coordinate"/>
+        <result property="infoIdentify" column="info_identify"/>
+        <result property="infoFlag" column="info_flag"/>
+        <result property="infoCreateTime" column="info_create_time"/>
+        <result property="infoUpdateTime" column="info_update_time"/>
+    </resultMap>
+
+
+</mapper>

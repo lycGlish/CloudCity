@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lyc.camera.camera.com.lyc.city.camera.dao.CameraDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.lyc.city.entity.CameraEntity" id="cameraMap">
+        <result property="cameraId" column="camera_id"/>
+        <result property="cameraName" column="camera_name"/>
+        <result property="cameraDescription" column="camera_description"/>
+        <result property="cameraCoordinate" column="camera_coordinate"/>
+        <result property="cameraArea" column="camera_area"/>
+    </resultMap>
+
+
+</mapper>

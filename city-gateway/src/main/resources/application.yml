@@ -1,0 +1,45 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: info_route
+          uri: lb://city-info
+          predicates:
+            - Path=/info/**
+          filters:
+            - StripPrefix=1
+
+        - id: manager_route
+          uri: lb://city-manager
+          predicates:
+            - Path=/manager/**
+          filters:
+            - StripPrefix=1
+
+        - id: camera_route
+          uri: lb://city-camera
+          predicates:
+            - Path=/camera/**
+          filters:
+            - StripPrefix=1
+
+        - id: third_party_route
+          uri: lb://city-third-party
+          predicates:
+            - Path=/third/**
+          filters:
+            - StripPrefix=1
+
+  application:
+    name: city-gateway
+
+server:
+  port: 88
+

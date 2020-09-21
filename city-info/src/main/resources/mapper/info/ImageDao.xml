@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lyc.city.info.dao.ImageDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.lyc.city.entity.ImageEntity" id="imageMap">
+        <result property="imageId" column="image_id"/>
+        <result property="imageName" column="image_name"/>
+        <result property="imageUrl" column="image_url"/>
+    </resultMap>
+    <insert id="saveBackImageId" parameterType="com.lyc.city.entity.ImageEntity">
+        insert into ims_image(image_id,image_name,image_url) values(#{imageId},#{imageName},#{imageUrl})
+        <selectKey resultType="long" keyProperty="imageId" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lyc.city.info.dao.CityDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.lyc.city.entity.CityEntity" id="cityMap">
+        <result property="cityId" column="city_id"/>
+        <result property="cityCode" column="city_code"/>
+        <result property="cityName" column="city_name"/>
+        <result property="provinceCode" column="province_code"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lyc.city.info.dao.CoordinateDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.lyc.city.entity.CoordinateEntity" id="coordinateMap">
+        <result property="coordinateId" column="coordinate_id"/>
+        <result property="longitude" column="longitude"/>
+        <result property="latitude" column="latitude"/>
+    </resultMap>
+    <insert id="insertReturnLong">
+        insert into ims_coordinate(coordinate_id,longitude,latitude) values(#{coordinateId},#{longitude},#{latitude})
+        <selectKey resultType="long" keyProperty="coordinateId" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    <select id="selectExistCoordinateByAll" resultType="com.lyc.city.entity.CoordinateEntity">
+        select c.coordinate_id,c.longitude,c.latitude from ims_coordinate as c where longitude = #{longitude} and latitude = #{latitude}
+    </select>
+
+
+</mapper>

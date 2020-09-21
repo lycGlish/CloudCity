@@ -1,0 +1,49 @@
+spring:
+  datasource:
+    username: root
+    password: lyc1289choose
+    url: jdbc:mysql://192.168.137.130:3306/city_ims?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.137.130:8848
+  application:
+    name: city-info
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: LEGACYHTML5
+    encoding: utf-8
+    cache: false
+  mvc:
+    static-path-pattern: /static/**
+  redis:
+    host: 192.168.137.130
+    port: 6379
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+server:
+  port: 7000
+
+logging:
+  level:
+    com.lyc.city: debug
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 30000
+        readTimeout: 30000
+
+

@@ -1,0 +1,261 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>城市防涝智慧检测系统</title>
+
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/css/linearicons.css" rel="stylesheet">
+    <link href="../static/css/owl.carousel.css" rel="stylesheet">
+    <link href="../static/css/owl.theme.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../static/images/logo.jpg">
+    <link href="../static/css/style.css" rel="stylesheet">
+    <link href="../static/css/responsive.css" rel="stylesheet">
+    <link href="../static/css/sweetalert.css" rel="stylesheet">
+    <!-- 百度地图密匙 -->
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=CsItNKwRaLZ8GXXaeyQI6kRozCMrtKcF"></script>
+</head>
+
+<body data-spy="scroll" data-target=".nav-top">
+<header id="home" data-spy="scroll" data-target="#top-nav">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="navbar navbar-default navbar-fixed-top default-menu menu-4" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#menu-4" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand default-logo scroll" href="#home"><img src="../static/images/logo.jpg"
+                                                                                      alt="logo"/>城市防涝智慧检测系统</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse top-nav" id="menu-4">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a class="scroll" href="#map">地图</a></li>
+                            <li><a class="scroll" href="#message">预警查询</a></li>
+                            <li><a class="scroll" href="#record">记录查询</a></li>
+                            <li><a class="scroll" href="#aboutUs">关于我们</a></li>
+                            <li>
+                                <button type="button" class="btn btn-light navbar-btn" style="margin: 17px 10px 0 0;"
+                                        onclick="showUploadModal()">预警上传
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-default navbar-btn">后台登录</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="intro">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-8 col-xs-12">
+                <div class="intro-content">
+                    <h1>城市防涝智慧检测系统</h1>
+                    <p>科技让生活更加智能</p>
+                    <a class="btn btn-default" href="#aboutUs" role="button">了解更多<i class="lnr lnr-arrow-right"></i></a>
+                    <a class="btn btn-primary" href="https://github.com/lycGlish/ClouldCity" role="button">Github<i
+                            class="lnr lnr-arrow-right"></i></a>
+                    <div><i class="fa fa-caret-down"></i></div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-8 col-xs-12">
+                <div><img src="../static/images/intro-image.png" class="img-responsive" alt="intro-image"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="map" class="map">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <h1 class="section-title">地图</h1>
+                <p>通过最直观的地图方式展示道路积水点</p>
+            </div>
+        </div>
+        <div class="row"><!--百度地图容器-->
+            <div class="col-md-12" style="height:750px;border:#ccc solid 1px;" id="allmap"></div>
+        </div>
+    </div>
+</section>
+
+<section id="message" class="message">
+    <div class="container">
+        <div class="row">
+            <div class="h3 pb-5 text-center col-md-12" data-aos="fade-up">
+                <h1 class="section-title">预警查询</h1>
+                <p>以表格的方式展示所有的预警消息</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <table id="messageTable" style="table-layout: fixed;word-break: break-all;">
+        </table>
+    </div>
+</section>
+
+<section id="record" class="record">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <h1 class="section-title">记录查询</h1>
+                <p class="section-para">集合所有上传的道路情况记录</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 text-center">
+        <table id="recordTable" style="table-layout: fixed;word-break: break-all;">
+        </table>
+    </div>
+</section>
+
+<section id="aboutUs" class="aboutUs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <h2 class="section-title">项目技术</h2>
+                <p class="section-para">网站基于SpringCloud+mybatis-plus搭建后端框架，nacos作为注册中心，openFeign处理远程调用，
+                    redis实现缓存，文件存储技术采用阿里的oss分布式文件管理，前端由bootstrap+thymeleaf搭建，
+                    图片智能识别技术通过TensorFlow训练模型，并整合flask框架提供远程识别api</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="people">
+                    <p>微服务是未来发展的趋势，项目从传统架构慢慢转向微服务架构，因为微服务可以使不同的团队专注于更小范围的工作职责
+                        、使用独立的技术、更安全更频繁地部署。而继承了Spring的优良特性，与Spring一脉相承，而且支持各种REST API的实现方式。
+                        SpringBoot也是官方大力推荐的技术</p>
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" src="../static/images/springboot.png" alt="">
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">SpringCloud</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="people">
+                    <p>TensorFlow™ 是一个使用数据流图进行数值计算的开放源代码软件库。图中的节点代表数学运算，
+                        而图中的边则代表在这些节点之间传递的多维数组（张量）。 借助这种灵活的架构，您可以通过一个 API 将计算工作部署到桌面设备、
+                        服务器或移动设备中的一个或多个 CPU 或 GPU</p>
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" src="../static/images/tensorFlow.png" alt="">
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">TensorFlow</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="people">
+                    <p>Bootstrap是Twitter开源的简单灵活可用于架构流行的用户界面和交互接口的html、css、javascript工具集。
+                        基于html5、css3的bootstrap， 具有大量的诱人特性：友好的学习曲线，卓越的兼容性，响应式设计，12列格网，
+                        样式向导文档。 自定义JQuery插件， 完整的类库，基于Less等。</p>
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" src="../static/images/bootstrap.png" alt="">
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">Bootstrap</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="people">
+                    <p>MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。
+                        MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java
+                        对象）为数据库中的记录。</p>
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" src="../static/images/mybatis.png" alt="">
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">Mybatis-Plus</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--预警消息模态框-->
+<div class="modal fade modalIndex" id="uploadModal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header form-inline">
+                <button type="button" class="close col-sm-1" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title col-sm-3" id="myModalLabel">上传预警信息</h4>
+                <img src="../static/images/hint.png" alt="" title="预警上传坐标默认采用图片自带经纬度，若图片不带经纬度请认真填写地址"
+                     style="width:25px;height:25px">
+            </div>
+            <div class="modal-body">
+                <form id="formTag" method="post" enctype="multipart/form-data">
+                    <!-- 图片上传 -->
+                    <input type="file" name="multipartFile" id="multipartFile" onchange="uploadImg()">
+                    <!-- 图片回显 -->
+                    <img src="" id="img" style="width:125px;height:125px;margin: 10px 100px 0 0" alt=""
+                         onerror="this.src='../static/images/imgDefault.png';this.onerror=null">
+                    <label style="color:red" id="isExistCoordinate">图片自带坐标不存在</label>
+                </form>
+
+                <form id="saveInfoByUser" name="saveInfoByUser" action="" method="post">
+                    <input type="text" id="longitude" name="longitude" style="display:none">
+                    <input type="text" id="latitude" name="latitude" style="display:none">
+                    <label for="infoDescription">图片地址</label>
+                    <input type="text" name="infoDescription" id="infoDescription">
+                    <!-- 图片url和自带经纬度（不显示，传入后台） -->
+                    <input type="text" id="imgUrl" name="imgUrl" style="display:none">
+                    <div style="margin: 10px 0 10px 0">
+                        <img src="../static/images/addressIcon.png" style="width:25px;height:25px" alt="">
+                        <select name="province" id="province" onchange="getCity()">
+                            <option value="">-----请选择城市-----</option>
+                            <option th:each="province:${allProvince}" th:text="${province.provinceName}"
+                                    th:value="${province.provinceCode}"></option>
+                        </select>
+                        <select name="city" id="city" onchange="getDistrict()">
+                            <option value="">-----请选择城市-----</option>
+                        </select>
+                        <select name="areaCode" id="areaCode">
+                            <option value="">-----请选择区/县-----</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" onclick="uploadInfo();">上传</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../static/js/jquery-2.1.1.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/bootstrap-table.min.js"></script>
+<script src="../static/js/owl.carousel.min.js"></script>
+<script src="../static/js/custom.js"></script>
+<script src="../static/js/sweetAlert.min.js"></script>
+<script src="../static/js/index.js"></script>
+</body>
+</html>
