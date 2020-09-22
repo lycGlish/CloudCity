@@ -17,6 +17,9 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 /**
  * @author lyc
  * @email 708901735@qq.com
@@ -47,8 +50,12 @@ public class MemberController {
     }
 
     @PostMapping("/doLogin")
-    public R doLogin(@RequestBody MemberEntity memberEntity) {
+    public R doLogin(@RequestBody MemberEntity memberEntity, HttpServletRequest request) {
         MemberEntity memberInfo = memberService.doLogin(memberEntity);
+        if (memberInfo != null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("member", memberInfo);
+        }
         return R.ok().put("data", memberInfo);
     }
 

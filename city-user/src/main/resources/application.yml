@@ -23,6 +23,9 @@ spring:
   redis:
     host: 192.168.137.130
     port: 6379
+    password: lyc1289choose
+  session:
+    store-type: redis
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml

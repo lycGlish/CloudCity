@@ -20,6 +20,7 @@ public class MyRedissonConfig {
         // 创建配置
         Config config = new Config();
         config.useSingleServer().setAddress("redis://192.168.137.130:6379");
+        config.useSingleServer().setPassword("lyc1289choose");
 
         // 创建实例
         return Redisson.create(config);

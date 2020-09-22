@@ -12,7 +12,6 @@ function login() {
             "password": password
         }),
         success: function (data) {
-            swal.close();
             if(data.data!=null){
                 window.location.href="http://localhost:8000"
             }else {

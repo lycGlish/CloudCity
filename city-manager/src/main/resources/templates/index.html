@@ -70,7 +70,7 @@
                                                 <img src="../static/images/logo.jpg" alt="Img Profile">
                                             </div>
                                             <div class="notif-content">
-                                                <span class="subject">名字</span>
+                                                <span class="subject" th:text="${session.member.name}">名字</span>
                                                 <span class="block">
 														功能敬请期待...
 													</span>
@@ -135,18 +135,19 @@
                     <li class="nav-item dropdown hidden-caret">
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                             <div class="avatar-sm">
-                                <img src="../static/images/logo.jpg" alt="..." class="avatar-img rounded-circle">
+                                <img th:src="${session.member.avatar}" alt="..."
+                                     class="avatar-img rounded-circle">
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-user animated fadeIn">
                             <div class="dropdown-user-scroll scrollbar-outer">
                                 <div class="user-box">
-                                    <div class="avatar-lg"><img src="../static/images/logo.jpg"
+                                    <div class="avatar-lg"><img th:src="${session.member.avatar}"
                                                                 alt="image profile" class="avatar-img rounded">
                                     </div>
                                     <div class="u-text">
-                                        <h4>张三</h4>
-                                        <p class="text-muted">hello@example.com</p>
+                                        <h4 th:text="${session.member.name}"></h4>
+                                        <p class="text-muted" th:text="${session.member.email}"></p>
                                     </div>
                                 </div>
                                 <div class="dropdown-divider"></div>
@@ -154,7 +155,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">账户设置</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">注销</a>
+                                <a class="dropdown-item" href="/logout">注销</a>
                             </div>
                         </ul>
                     </li>
@@ -213,7 +214,7 @@
         <div class="content">
             <div class="page-inner">
                 <div class="mt-2 mb-4">
-                    <h2 class="text-white pb-2">欢迎回来, 张三!</h2>
+                    <h2 class="text-white pb-2">欢迎回来, <span th:text="${session.member.name}"></span>!</h2>
                 </div>
                 <div class="row">
                     <div class="col-md-4">

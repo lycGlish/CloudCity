@@ -2,9 +2,9 @@
 
 # 版本更新内容  
 
- * user模块新增用户总数查询接口  
- * 各类表单提交后锁定界面  
- * 更新ims.sql结构  
+ * 整合进入springSession  
+ * 登录与后台管理对接完成  
+ * 注销功能完成  
 
 ## 接口模块  
 
@@ -35,6 +35,7 @@
  *  openFeign  
  *  gateway  
  *  redis  
+ *  springSession  
  
 ### 前端技术  
 
