@@ -2,9 +2,8 @@
 
 # 版本更新内容  
 
- * 整合进入springSession  
- * 登录与后台管理对接完成  
- * 注销功能完成  
+ * 整合springSecurity  
+ * 网关模块bug修复  
 
 ## 接口模块  
 
@@ -39,10 +38,10 @@
  
 ### 前端技术  
 
- *  bootstrap+thymeleaf
- *  bootstrapTable
- *  jquery
- *  sweetAlert
+ *  bootstrap+thymeleaf  
+ *  bootstrapTable  
+ *  jquery  
+ *  sweetAlert  
 
 ### 其他技术  
 

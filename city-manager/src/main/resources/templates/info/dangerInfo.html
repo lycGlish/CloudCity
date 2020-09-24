@@ -4,32 +4,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>后台管理</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
-    <link rel="icon" href="../../static/images/logo.jpg" type="image/x-icon"/>
+    <link rel="icon" href="../../manager/static/images/logo.jpg" type="image/x-icon"/>
 
-    <script src="../../static/js/webfont.min.js"></script>
+    <script src="../../manager/static/js/webfont.min.js"></script>
     <script>
         WebFont.load({
             google: {"families": ["Lato:300,400,700,900"]},
             custom: {
                 "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"],
-                urls: ['../static/css/fonts.min.css']
+                urls: ['../manager/static/css/fonts.min.css']
             },
             active: function () {
                 sessionStorage.fonts = true;
             }
         });
     </script>
-    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../static/css/atlantis.min.css">
-    <link rel="stylesheet" href="../../static/css/sweetalert.css">
+    <link rel="stylesheet" href="../../manager/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../manager/static/css/atlantis.min.css">
+    <link rel="stylesheet" href="../../manager/static/css/sweetalert.css">
 </head>
 <body data-background-color="dark">
 <div class="wrapper">
     <!-- 顶部导航栏 -->
     <div class="main-header">
         <div class="logo-header" data-background-color="dark2">
-            <a href="http://localhost:7000/" class="logo">
-                <img src="../static/images/logo.jpg" alt="navbar brand" class="navbar-brand"
+            <a href="http://localhost:88/city-info/" class="logo">
+                <img src="../../manager/static/images/logo.jpg" alt="navbar brand" class="navbar-brand"
                      style="width: 50px;height: 50px;">
                 <label class="text-white">后台管理系统</label>
             </a>
@@ -67,7 +67,7 @@
                                     <div class="notif-center">
                                         <a href="#">
                                             <div class="notif-img">
-                                                <img src="../static/images/logo.jpg" alt="Img Profile">
+                                                <img src="../../manager/static/images/logo.jpg" alt="Img Profile">
                                             </div>
                                             <div class="notif-content">
                                                 <span class="subject" th:text="${session.member.name}">名字</span>
@@ -154,7 +154,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">账户设置</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/member/feign/logout">注销</a>
+                                <a class="dropdown-item" href="/city-manager/logout">注销</a>
                             </div>
                         </ul>
                     </li>
@@ -290,22 +290,22 @@
     </div>
     <!-- 修改end -->
 </div>
-<script src="../../static/js/jquery.3.2.1.min.js"></script>
-<script src="../../static/js/popper.min.js"></script>
-<script src="../../static/js/bootstrap.min.js"></script>
-<script src="../../static/js/atlantis.min.js"></script>
-<script src="../../static/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-<script src="../../static/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
-<script src="../../static/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-<script src="../../static/js/plugin/chart.js/chart.min.js"></script>
-<script src="../../static/js/plugin/jquery-sparkLine/jquery.sparkLine.min.js"></script>
-<script src="../../static/js/plugin/chart-circle/circles.min.js"></script>
-<script src="../../static/js/plugin/dataTables/dataTables.min.js"></script>
-<script src="../../static/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
-<script src="../../static/js/plugin/sweetAlert/sweetAlert.min.js"></script>
-<script src="../../static/js/bootstrap-table.min.js"></script>
-<script src="../../static/js/formatter.js"></script>
-<script src="../../static/js/info/dangerInfo.js"></script>
-<script src="../../static/js/info/info.js"></script>
+<script src="../../manager/static/js/jquery.3.2.1.min.js"></script>
+<script src="../../manager/static/js/popper.min.js"></script>
+<script src="../../manager/static/js/bootstrap.min.js"></script>
+<script src="../../manager/static/js/atlantis.min.js"></script>
+<script src="../../manager/static/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="../../manager/static/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+<script src="../../manager/static/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<script src="../../manager/static/js/plugin/chart.js/chart.min.js"></script>
+<script src="../../manager/static/js/plugin/jquery-sparkLine/jquery.sparkLine.min.js"></script>
+<script src="../../manager/static/js/plugin/chart-circle/circles.min.js"></script>
+<script src="../../manager/static/js/plugin/dataTables/dataTables.min.js"></script>
+<script src="../../manager/static/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="../../manager/static/js/plugin/sweetAlert/sweetAlert.min.js"></script>
+<script src="../../manager/static/js/bootstrap-table.min.js"></script>
+<script src="../../manager/static/js/formatter.js"></script>
+<script src="../../manager/static/js/info/dangerInfo.js"></script>
+<script src="../../manager/static/js/info/info.js"></script>
 </body>
 </html>

@@ -1,4 +1,8 @@
 spring:
+#  security:
+#    user:
+#      name: admin
+#      password: admin
   cloud:
     nacos:
       discovery:
@@ -12,30 +16,37 @@ spring:
         - id: info_route
           uri: lb://city-info
           predicates:
-            - Path=/info/**
+            - Path=/city-info/**, /info/static/**
           filters:
-            - StripPrefix=1
+            - RewritePath=/city-info/, /info/static/**
 
         - id: manager_route
           uri: lb://city-manager
           predicates:
-            - Path=/manager/**
+            - Path=/city-manager/**, /manager/static/**
           filters:
-            - StripPrefix=1
+            - RewritePath=/city-manager/, /manager/static/**
 
         - id: camera_route
           uri: lb://city-camera
           predicates:
-            - Path=/camera/**
+            - Path=/city-camera/**, /camera/static/**
           filters:
-            - StripPrefix=1
+            - RewritePath=/city-camera/, /camera/static/**
+
+        - id: user_route
+          uri: lb://city-user
+          predicates:
+            - Path=/city-user/**, /user/static/**
+          filters:
+            - RewritePath=/city-user/, /user/static/**
 
         - id: third_party_route
           uri: lb://city-third-party
           predicates:
-            - Path=/third/**
+            - Path=/city-third-party/**, /third-party/static/**
           filters:
-            - StripPrefix=1
+            - RewritePath=/city-third-party/, /third-party/static/**
 
   application:
     name: city-gateway

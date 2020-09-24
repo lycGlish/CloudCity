@@ -29,7 +29,7 @@ public class MemberController {
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.removeAttribute("member");
-        return "redirect:http://localhost:7000";
+        return "redirect:http://localhost:88/city-info/";
     }
 
     @GetMapping("member")

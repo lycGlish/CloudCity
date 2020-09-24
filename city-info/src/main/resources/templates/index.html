@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>城市防涝智慧检测系统</title>
 
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../static/css/linearicons.css" rel="stylesheet">
-    <link href="../static/css/owl.carousel.css" rel="stylesheet">
-    <link href="../static/css/owl.theme.css" rel="stylesheet">
-    <link href="../static/images/logo.jpg" rel="shortcut icon">
-    <link href="../static/css/style.css" rel="stylesheet">
-    <link href="../static/css/responsive.css" rel="stylesheet">
-    <link href="../static/css/sweetalert.css" rel="stylesheet">
+    <link href="../info/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../info/static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../info/static/css/linearicons.css" rel="stylesheet">
+    <link href="../info/static/css/owl.carousel.css" rel="stylesheet">
+    <link href="../info/static/css/owl.theme.css" rel="stylesheet">
+    <link href="../info/static/images/logo.jpg" rel="shortcut icon">
+    <link href="../info/static/css/style.css" rel="stylesheet">
+    <link href="../info/static/css/responsive.css" rel="stylesheet">
+    <link href="../info/static/css/sweetalert.css" rel="stylesheet">
     <!-- 百度地图密匙 -->
     <script type="text/javascript"
             src="http://api.map.baidu.com/api?v=2.0&ak=CsItNKwRaLZ8GXXaeyQI6kRozCMrtKcF"></script>
@@ -33,7 +33,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand default-logo scroll" href="#home"><img src="../static/images/logo.jpg"
+                        <a class="navbar-brand default-logo scroll" href="#home"><img src="../info/static/images/logo.jpg"
                                                                                       alt="logo"/>城市防涝智慧检测系统</a>
                     </div>
 
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-sm-8 col-xs-12">
-                <div><img src="../static/images/intro-image.png" class="img-responsive" alt="intro-image"></div>
+                <div><img src="../info/static/images/intro-image.png" class="img-responsive" alt="intro-image"></div>
             </div>
         </div>
     </div>
@@ -139,7 +139,7 @@
                         SpringBoot也是官方大力推荐的技术</p>
                     <div class="media">
                         <div class="media-left">
-                            <img class="media-object" src="../static/images/springboot.png" alt="">
+                            <img class="media-object" src="../info/static/images/springboot.png" alt="">
                         </div>
                         <div class="media-body">
                             <h3 class="media-heading">SpringCloud</h3>
@@ -154,7 +154,7 @@
                         服务器或移动设备中的一个或多个 CPU 或 GPU</p>
                     <div class="media">
                         <div class="media-left">
-                            <img class="media-object" src="../static/images/tensorFlow.png" alt="">
+                            <img class="media-object" src="../info/static/images/tensorFlow.png" alt="">
                         </div>
                         <div class="media-body">
                             <h3 class="media-heading">TensorFlow</h3>
@@ -169,7 +169,7 @@
                         样式向导文档。 自定义JQuery插件， 完整的类库，基于Less等。</p>
                     <div class="media">
                         <div class="media-left">
-                            <img class="media-object" src="../static/images/bootstrap.png" alt="">
+                            <img class="media-object" src="../info/static/images/bootstrap.png" alt="">
                         </div>
                         <div class="media-body">
                             <h3 class="media-heading">Bootstrap</h3>
@@ -184,7 +184,7 @@
                         对象）为数据库中的记录。</p>
                     <div class="media">
                         <div class="media-left">
-                            <img class="media-object" src="../static/images/mybatis.png" alt="">
+                            <img class="media-object" src="../info/static/images/mybatis.png" alt="">
                         </div>
                         <div class="media-body">
                             <h3 class="media-heading">Mybatis-Plus</h3>
@@ -205,7 +205,7 @@
                         aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="modal-title col-sm-3" id="myModalLabel">上传预警信息</h4>
-                <img src="../static/images/hint.png" alt="" title="预警上传坐标默认采用图片自带经纬度，若图片不带经纬度请认真填写地址"
+                <img src="../info/static/images/hint.png" alt="" title="预警上传坐标默认采用图片自带经纬度，若图片不带经纬度请认真填写地址"
                      style="width:25px;height:25px" onclick="imageHint()">
             </div>
             <div class="modal-body">
@@ -214,7 +214,7 @@
                     <input type="file" name="multipartFile" id="multipartFile" onchange="uploadImg()">
                     <!-- 图片回显 -->
                     <img src="" id="img" style="width:125px;height:125px;margin: 10px 100px 0 0" alt=""
-                         onerror="this.src='../static/images/imgDefault.png';this.onerror=null">
+                         onerror="this.src='../info/static/images/imgDefault.png';this.onerror=null">
                     <label style="color:red" id="isExistCoordinate">图片自带坐标不存在</label>
                 </form>
 
@@ -226,7 +226,7 @@
                     <!-- 图片url和自带经纬度（不显示，传入后台） -->
                     <input type="text" id="imgUrl" name="imgUrl" style="display:none">
                     <div style="margin: 10px 0 10px 0">
-                        <img src="../static/images/addressIcon.png" style="width:25px;height:25px" alt="">
+                        <img src="../info/static/images/addressIcon.png" style="width:25px;height:25px" alt="">
                         <select name="province" id="province" onchange="getCity()">
                             <option value="">-----请选择城市-----</option>
                             <option th:each="province:${allProvince}" th:text="${province.provinceName}"
@@ -248,12 +248,12 @@
         </div>
     </div>
 </div>
-<script src="../static/js/jquery-2.1.1.js"></script>
-<script src="../static/js/bootstrap.min.js"></script>
-<script src="../static/js/bootstrap-table.min.js"></script>
-<script src="../static/js/owl.carousel.min.js"></script>
-<script src="../static/js/custom.js"></script>
-<script src="../static/js/sweetAlert.min.js"></script>
-<script src="../static/js/index.js"></script>
+<script src="../info/static/js/jquery-2.1.1.js"></script>
+<script src="../info/static/js/bootstrap.min.js"></script>
+<script src="../info/static/js/bootstrap-table.min.js"></script>
+<script src="../info/static/js/owl.carousel.min.js"></script>
+<script src="../info/static/js/custom.js"></script>
+<script src="../info/static/js/sweetAlert.min.js"></script>
+<script src="../info/static/js/infoIndex.js"></script>
 </body>
 </html>

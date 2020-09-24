@@ -1,4 +1,6 @@
 spring:
+  resources:
+    static-locations: classpath:/user/static/
   datasource:
     username: root
     password: lyc1289choose
@@ -19,7 +21,7 @@ spring:
     encoding: utf-8
     cache: false
   mvc:
-    static-path-pattern: /static/**
+    static-path-pattern: /user/static/**
   redis:
     host: 192.168.137.130
     port: 6379
