@@ -2,8 +2,8 @@
 
 # 版本更新内容  
 
- * 整合springSecurity  
- * 网关模块bug修复  
+ * gateway与security整合  
+ * 全局权限过滤跳转登录页面完成  
 
 ## 接口模块  
 
