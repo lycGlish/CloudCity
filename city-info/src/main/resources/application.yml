@@ -1,8 +1,4 @@
 spring:
-#  security:
-#    user:
-#      name: admin
-#      password: admin
   resources:
     static-locations: classpath:/info/static/
   datasource:

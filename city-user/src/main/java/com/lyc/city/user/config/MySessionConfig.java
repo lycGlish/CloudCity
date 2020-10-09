@@ -18,7 +18,6 @@ public class MySessionConfig {
     public CookieSerializer cookieSerializer(){
         DefaultCookieSerializer defaultCookieSerializer = new DefaultCookieSerializer();
         defaultCookieSerializer.setCookieName("CITYSESSION");
-//        defaultCookieSerializer.setDomainName(".gulimail.com"); //将JSESSIONID作用域提高到父域名
         return defaultCookieSerializer;
     }
 

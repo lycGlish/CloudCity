@@ -1,5 +1,5 @@
 function login() {
-    swal("登陆中，请稍后！",{buttons: false});
+    swal("登陆中，请稍后！", {buttons: false});
     var phone = document.getElementById("phone").value;
     var password = document.getElementById("password").value;
     $.ajax({
@@ -12,9 +12,12 @@ function login() {
             "password": password
         }),
         success: function (data) {
-            if(data.data!=null){
-                window.location.href="http://localhost:88/city-manager/"
-            }else {
+            alert(data);
+            if (data.data.memberLevel === 0) {
+                window.location.href = "http://localhost:88/city-manager/"
+            } else if (data.data.memberLevel > 0) {
+                window.location.href = "http://localhost:88/city-info/"
+            } else {
                 swal('登录失败', '请检查账号密码是否错误!', 'error');
             }
         },

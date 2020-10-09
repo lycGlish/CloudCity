@@ -16,10 +16,10 @@ public interface InfoFeignService {
     R count();
 
     @GetMapping("/info/area/getAreaByCityCode")
-    R getAreaByCityCode(@RequestParam String cityCode);
+    R getAreaByCityCode(@RequestParam("cityCode") String cityCode);
 
     @GetMapping("/info/city/getCityByProvinceCode")
-    R getCityByProvinceCode(@RequestParam String provinceCode);
+    R getCityByProvinceCode(@RequestParam("provinceCode") String provinceCode);
 
     @GetMapping("/info/province/getAllProvince")
     R getAllProvince();

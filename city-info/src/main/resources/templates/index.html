@@ -33,8 +33,9 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand default-logo scroll" href="#home"><img src="../info/static/images/logo.jpg"
-                                                                                      alt="logo"/>城市防涝智慧检测系统</a>
+                        <a class="navbar-brand default-logo scroll" href="#home"><img
+                                src="../info/static/images/logo.jpg"
+                                alt="logo"/>城市防涝智慧检测系统</a>
                     </div>
 
                     <div class="collapse navbar-collapse top-nav" id="menu-4">
@@ -48,9 +49,18 @@
                                         onclick="showUploadModal()">预警上传
                                 </button>
                             </li>
-                            <li>
+                            <li th:if="${session.member} eq null">
                                 <button type="button" class="btn btn-default navbar-btn"
                                         onclick="toLogin()">用户登录
+                                </button>
+                            </li>
+                            <li th:if="${session.member} ne null">
+                                <button type="button" class="btn btn-default navbar-btn"
+                                        th:if="${session.member.memberLevel} ge 1" onclick="toManager()">后台管理
+                                </button>
+                                <button type="button" class="btn btn-default navbar-btn"
+                                        th:if="${session.member.memberLevel} eq 0" th:text="${session.member.name}"
+                                        onclick="toLogout()">
                                 </button>
                             </li>
                         </ul>
@@ -255,5 +265,19 @@
 <script src="../info/static/js/custom.js"></script>
 <script src="../info/static/js/sweetAlert.min.js"></script>
 <script src="../info/static/js/infoIndex.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    // 预警上传模态框显示
+    function showUploadModal() {
+        var member = /*[[${session.member}]]*/ null;
+        if (member != null) {
+            $("#uploadModal").modal('show');
+        } else {
+            swal("请先登录！","", "warning");
+        }
+    }
+
+    /*]]>*/
+</script>
 </body>
 </html>

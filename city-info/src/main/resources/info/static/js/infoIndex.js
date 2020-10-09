@@ -315,13 +315,8 @@ function infoStatusFormatter(value) {
     }
 }
 
-// 预警上传模态框显示
-function showUploadModal() {
-    $("#uploadModal").modal('show');
-}
-
 function uploadInfo() {
-    swal("上传消息中，请稍后！",{buttons: false});
+    swal("上传消息中，请稍后！", {buttons: false});
     var imgUrl = document.getElementById("imgUrl").value;
     var areaCode = document.getElementById("areaCode").value;
     var infoDescription = document.getElementById("infoDescription").value;
@@ -342,8 +337,12 @@ function uploadInfo() {
         success: function (data) {
             swal.close();
             console.log("data is :" + data);
-            setTimeout(function(){swal("成功", "预警上传成功！", "success"); },100);
-            setTimeout(function(){window.location.reload(); },10000);
+            setTimeout(function () {
+                swal("成功", "预警上传成功！", "success");
+            }, 100);
+            setTimeout(function () {
+                window.location.reload();
+            }, 10000);
         },
         error: function () {
             swal.close();
@@ -397,7 +396,7 @@ function getCity() {
 
 // 上传图片并回显
 function uploadImg() {
-    swal("上传图片中，请稍后！",{buttons: false});
+    swal("上传图片中，请稍后！", {buttons: false});
     $.ajax({
         type: "POST",
         url: "/city-info/info/image/upload/image",
@@ -427,7 +426,16 @@ function uploadImg() {
 }
 
 function toLogin() {
-    window.location.href="http://localhost:88/city-user/login";
+    window.location.href = "http://localhost:88/city-user/login";
+}
+
+function toLogout() {
+
+    window.location.href = "http://localhost:88/city-manager/logout";
+}
+
+function toManager() {
+    window.location.href = "http://localhost:88/city-manager/";
 }
 
 function imageHint() {

@@ -37,16 +37,37 @@ spring:
           filters:
             - RewritePath=/city-user/, /user/static/**
 
+        - id: gateway_route
+          uri: lb://city-gateway
+          predicates:
+            - Path=/city-gateway/**, /gateway/static/**
+          filters:
+            - RewritePath=/city-gateway/, /gateway/static/**
+
         - id: third_party_route
           uri: lb://city-third-party
           predicates:
             - Path=/city-third-party/**, /third-party/static/**
           filters:
             - RewritePath=/city-third-party/, /third-party/static/**
-
   application:
     name: city-gateway
+  redis:
+    host: 192.168.137.130
+    port: 6379
+    password: lyc1289choose
 
 server:
   port: 88
+
+logging:
+  level:
+    com.lyc.city: debug
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 30000
+        readTimeout: 30000
 

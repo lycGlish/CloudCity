@@ -1,4 +1,4 @@
-package com.lyc.city.manager.config;
+package com.lyc.city.info.config;
 
 import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
 import org.springframework.context.annotation.Bean;
