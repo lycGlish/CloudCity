@@ -17,6 +17,7 @@
         <module>city-camera</module>
         <module>city-auth-server</module>
         <module>city-user</module>
+        <module>city-auth</module>
     </modules>
 
     <build>

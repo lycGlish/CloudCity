@@ -25,6 +25,12 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
+    @GetMapping("/getMemberByPhone")
+    public R getMemberByPhone(@RequestParam("phone") String phone){
+        MemberEntity memberEntity = memberService.getMemberByPhone(phone);
+        return R.ok().put("data",memberEntity);
+    }
+
     @GetMapping("/count")
     public R count() {
         int count = memberService.count();
@@ -32,7 +38,7 @@ public class MemberController {
     }
 
     @GetMapping("/getMemberById")
-    public R getMemberById(@RequestParam Long memberId) {
+    public R getMemberById(@RequestParam("memberId") Long memberId) {
         MemberEntity memberEntity = memberService.getMemberById(memberId);
         return R.ok().put("data", memberEntity);
     }

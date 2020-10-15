@@ -14,6 +14,7 @@
     <link href="../info/static/css/style.css" rel="stylesheet">
     <link href="../info/static/css/responsive.css" rel="stylesheet">
     <link href="../info/static/css/sweetalert.css" rel="stylesheet">
+    <link href="../info/static/css/datatables.min.css" rel="stylesheet">
     <!-- 百度地图密匙 -->
     <script type="text/javascript"
             src="http://api.map.baidu.com/api?v=2.0&ak=CsItNKwRaLZ8GXXaeyQI6kRozCMrtKcF"></script>
@@ -42,7 +43,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li><a class="scroll" href="#map">地图</a></li>
                             <li><a class="scroll" href="#message">预警查询</a></li>
-                            <li><a class="scroll" href="#record">记录查询</a></li>
+                            <li><a class="scroll" href="#analysis">记录分析</a></li>
                             <li><a class="scroll" href="#aboutUs">关于我们</a></li>
                             <li>
                                 <button type="button" class="btn btn-light navbar-btn" style="margin: 17px 10px 0 0;"
@@ -105,29 +106,64 @@
     </div>
 </div>
 
-<div id="message" class="col-md-12">
+<div id="message" class="col-md-8 col-sm-offset-2">
     <div class="row">
         <div class="h3 pb-5 text-center col-md-12" data-aos="fade-up">
             <h1 class="section-title">预警查询</h1>
             <p>以表格的方式展示所有的预警消息</p>
         </div>
     </div>
-    <div class="col-md-12">
-        <table id="messageTable" style="table-layout: fixed;word-break: break-all;">
-        </table>
+    <div class="panel col-md-12 ">
+        <div id="datas" class="row">
+            <div class="col-sm-12">
+                <table class="tablelist card" id="example">
+                    <thead>
+                    <tr>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody class="card-body">
+                    <tr class="col-sm-6" th:each="statusInfo:${statusInfos}">
+                        <td class="col-sm-6 col-md-offset-2" style='float:left'>
+                            <img class="img-responsive center-block" style="width: 125px;height: 125px"
+                                 th:src="${statusInfo.imageEntity.imageUrl}" th:title="'坐标:'
+                             +${statusInfo.coordinateEntity.longitude}+','+${statusInfo.coordinateEntity.latitude}+'&#10;' +
+                            '省份：'+${statusInfo.provinceEntity.provinceName}+'&#10;' +
+                            '城市：'+${statusInfo.cityEntity.cityName}+'&#10;' +
+                            '区县：'+${statusInfo.areaEntity.areaName}">
+                            <h5 class="card-title col-md-offset-2"
+                                th:text="'图片地址描述：'+${statusInfo.infoDescription}"></h5>
+                            <span th:switch="${statusInfo.infoStatus}">
+                                <p class="card-text col-md-offset-2" th:case="0">消息状态：识别错误</p>
+                                <p class="card-text col-md-offset-2" th:case="1">消息状态：无积水</p>
+                                <p class="card-text col-md-offset-2" th:case="2">消息状态：积水</p>
+                                <p class="card-text col-md-offset-2" th:case="3">消息状态：内涝</p>
+                                <p class="card-text col-md-offset-2" th:case="4">消息状态：冰雪</p>
+                            </span>
+                            <p class="card-text col-md-offset-1" th:text="'更新时间：'+${statusInfo.infoUpdateTime}"></p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 
-<div id="record" class="col-md-12">
+<div id="analysis" class="col-md-8 col-sm-offset-2">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2 text-center">
-            <h1 class="section-title">记录查询</h1>
-            <p class="section-para">集合所有上传的道路情况记录</p>
+        <div class="h3 pb-5 text-center col-md-12" data-aos="fade-up">
+            <h1 class="section-title">记录分析</h1>
+            <p>对所有的图像识别进行数据分析</p>
         </div>
     </div>
-    <div class="col-md-12 text-center">
-        <table id="recordTable" style="table-layout: fixed;word-break: break-all;">
-        </table>
+    <div class="col-md-12">
+        <div id="accuracy" class="col-md-6" style="width: 600px;height:400px;">
+        </div>
+        <div id="source" class="col-md-6" style="width: 600px;height:400px;">
+        </div>
+        <div id="sum" class="col-md-12" style="width: 1200px;height:400px;">
+        </div>
     </div>
 </div>
 
@@ -137,7 +173,7 @@
             <div class="col-md-8 col-md-offset-2 text-center">
                 <h2 class="section-title">项目技术</h2>
                 <p class="section-para">网站基于SpringCloud+mybatis-plus搭建后端框架，nacos作为注册中心，openFeign处理远程调用，
-                    redis实现缓存，文件存储技术采用阿里的oss分布式文件管理，前端由bootstrap+thymeleaf搭建，
+                    redis实现缓存，文件存储技术采用阿里的oss分布式文件管理，gateway对网关进行处理，前端由bootstrap+thymeleaf搭建，
                     图片智能识别技术通过TensorFlow训练模型，并整合flask框架提供远程识别api</p>
             </div>
         </div>
@@ -261,6 +297,8 @@
 <script src="../info/static/js/jquery-2.1.1.js"></script>
 <script src="../info/static/js/bootstrap.min.js"></script>
 <script src="../info/static/js/bootstrap-table.min.js"></script>
+<script src="../info/static/js/echarts.min.js"></script>
+<script src="../info/static/js/datatables.min.js"></script>
 <script src="../info/static/js/owl.carousel.min.js"></script>
 <script src="../info/static/js/custom.js"></script>
 <script src="../info/static/js/sweetAlert.min.js"></script>
@@ -273,7 +311,7 @@
         if (member != null) {
             $("#uploadModal").modal('show');
         } else {
-            swal("请先登录！","", "warning");
+            swal("请先登录！", "", "warning");
         }
     }
 

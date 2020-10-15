@@ -27,5 +27,7 @@ public interface MemberService extends IService<MemberEntity> {
     void doRegister(MemberEntity memberEntity);
 
     MemberEntity getMemberById(Long memberId);
+
+    MemberEntity getMemberByPhone(String phone);
 }
 

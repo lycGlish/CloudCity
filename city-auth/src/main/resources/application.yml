@@ -1,0 +1,33 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.137.130:8848
+  datasource:
+    username: root
+    password: lyc1289choose
+    jdbc-url: jdbc:mysql://192.168.137.130:3306/city_oauth?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: city-auth
+  redis:
+    host: 192.168.137.130
+    port: 6379
+    password: lyc1289choose
+  thymeleaf:
+    cache: false
+
+server:
+  port: 20000
+
+logging:
+  level:
+    com.lyc.city: debug
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 30000
+        readTimeout: 30000
+

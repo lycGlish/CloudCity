@@ -61,9 +61,6 @@ public class InfoServiceImpl extends ServiceImpl<InfoDao, InfoEntity> implements
     @Autowired
     private RedissonClient redissonClient;
 
-    @Autowired
-    private MemberFeignService memberFeignService;
-
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<InfoEntity> page = this.page(

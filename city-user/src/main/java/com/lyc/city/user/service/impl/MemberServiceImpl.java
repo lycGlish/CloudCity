@@ -71,4 +71,9 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
     public MemberEntity getMemberById(Long memberId) {
         return baseMapper.selectById(memberId);
     }
+
+    @Override
+    public MemberEntity getMemberByPhone(String phone) {
+        return baseMapper.selectOne(new QueryWrapper<MemberEntity>().eq("phone",phone));
+    }
 }

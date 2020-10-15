@@ -12,11 +12,10 @@ function login() {
             "password": password
         }),
         success: function (data) {
-            alert(data);
             if (data.data.memberLevel === 0) {
-                window.location.href = "http://localhost:88/city-manager/"
+                window.location.href = "http://localhost:88/city-info/";
             } else if (data.data.memberLevel > 0) {
-                window.location.href = "http://localhost:88/city-info/"
+                window.location.href = "http://localhost:88/city-manager/";
             } else {
                 swal('登录失败', '请检查账号密码是否错误!', 'error');
             }

@@ -44,18 +44,34 @@ spring:
           filters:
             - RewritePath=/city-gateway/, /gateway/static/**
 
+        - id: auth_route
+          uri: lb://city-auth
+          predicates:
+            - Path=/city-auth
+
         - id: third_party_route
           uri: lb://city-third-party
           predicates:
             - Path=/city-third-party/**, /third-party/static/**
           filters:
             - RewritePath=/city-third-party/, /third-party/static/**
+
   application:
     name: city-gateway
   redis:
     host: 192.168.137.130
     port: 6379
     password: lyc1289choose
+
+#security:
+#  oauth2:
+#    client:
+#      client-id: client
+#      client-secret: secret
+#      access-token-uri: http://localhost:20000/oauth/token
+#      user-authorization-uri: http://localhost:20000/oauth/authorize
+#    resource:
+#      token-info-uri: http://localhost:20000/oauth/check_token
 
 server:
   port: 88

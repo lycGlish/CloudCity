@@ -58,24 +58,45 @@ $(document).ready(function () {
         success: function (data) {
             data_info = data.data;
             for (var i = 0; i < data_info.length; i++) {
-                var marker = new BMap.Marker(new BMap.Point(data_info[i].coordinateEntity.longitude, data_info[i].coordinateEntity.latitude));  // 创建标注
+                var myIcon="";
+                var marker="";
                 var content = "";
                 var status = "";
                 switch (data_info[i].infoStatus) {
                     case 0:
+                        myIcon = new BMap.Icon('../info/static/images/blue.png',new BMap.Size(30, 30));
+                        myIcon.setImageSize(new BMap.Size(30, 30));
                         status = "识别错误";
+                        marker = new BMap.Marker(new BMap.Point(data_info[i].coordinateEntity.longitude, data_info[i].coordinateEntity.latitude
+                        ),{icon:myIcon});
                         break;
                     case 1:
+                        myIcon = new BMap.Icon('../info/static/images/green.png',new BMap.Size(30, 30));
+                        myIcon.setImageSize(new BMap.Size(30, 30));
                         status = "无积水";
+                        marker = new BMap.Marker(new BMap.Point(data_info[i].coordinateEntity.longitude, data_info[i].coordinateEntity.latitude
+                            ),{icon:myIcon});
                         break;
                     case 2:
+                        myIcon = new BMap.Icon('../info/static/images/yellow.png',new BMap.Size(30, 30));
+                        myIcon.setImageSize(new BMap.Size(30, 30));
                         status = "积水";
+                        marker = new BMap.Marker(new BMap.Point(data_info[i].coordinateEntity.longitude, data_info[i].coordinateEntity.latitude
+                            ),{icon:myIcon});
                         break;
                     case 3:
+                        myIcon = new BMap.Icon('../info/static/images/red.png',new BMap.Size(30, 30));
+                        myIcon.setImageSize(new BMap.Size(30, 30));
                         status = "内涝";
+                        marker = new BMap.Marker(new BMap.Point(data_info[i].coordinateEntity.longitude, data_info[i].coordinateEntity.latitude
+                            ),{icon:myIcon});
                         break;
                     case 4:
+                        myIcon = new BMap.Icon('../info/static/images/pink.png',new BMap.Size(30, 30));
+                        myIcon.setImageSize(new BMap.Size(30, 30));
                         status = "冰雪";
+                        marker = new BMap.Marker(new BMap.Point(data_info[i].coordinateEntity.longitude, data_info[i].coordinateEntity.latitude
+                            ),{icon:myIcon});
                         break;
                 }
                 content += "更新时间:" + data_info[i].infoUpdateTime.toString() + "<br>";
@@ -92,228 +113,33 @@ $(document).ready(function () {
     });
 });
 
-// 获取所有消息
-$(function () {
-    $('#recordTable').bootstrapTable({
-        ajax: function (request) {
-            $.ajax({
-                type: "GET",
-                // /info/info/状态标识符（0特殊状态1全状态）/展示标识符(0不展示1展示2全部)/info
-                url: "/city-info/info/info/1/1/info",
-                contentType: "application/json;charset=utf-8",
-                dataType: "json",
-                data: '',
-                success: function (msg) {
-                    request.success({
-                        row: msg
-                    });
-                    $('#recordTable').bootstrapTable('load', msg.data);
-                },
-                error: function () {
-                    swal("错误", "所有消息表格数据获取失败", "error");
-                }
-            });
+// 分页工具
+$(document).ready(function () {
+    $("#example").dataTable({
+        "bProcessing": true, //DataTables载入数据时，是否显示‘进度’提示
+        "aLengthMenu": [6, 12, 20], //更改显示记录数选项
+        "sPaginationType": "full_numbers", //详细分页组，可以支持直接跳转到某页
+        "bAutoWidth": true, //是否自适应宽度
+        //"bJQueryUI" : true,
+        "oLanguage": { //国际化配置
+            "sProcessing": "正在获取数据，请稍后...",
+            "sLengthMenu": "显示 _MENU_ 条",
+            "sZeroRecords": "没有您要搜索的内容",
+            "sInfo": "从 _START_ 到  _END_ 条记录 总记录数为 _TOTAL_ 条",
+            "sInfoEmpty": "记录数为0",
+            "sInfoFiltered": "(全部记录数 _MAX_ 条)",
+            "sInfoPostFix": "",
+            "sSearch": "搜索",
+            "sUrl": "",
+            "oPaginate": {
+                "sFirst": "第一页",
+                "sPrevious": "上一页",
+                "sNext": "下一页",
+                "sLast": "最后一页"
+            }
         },
-
-        toolbar: '#toolbar',
-        singleSelect: true,
-        sidePagination: "client",
-        showRefresh: false,
-        sortName: "infoUpdateTime",
-        sortOrder: "desc",
-        pageSize: 10,
-        pageList: "[10, 25, 50, 100]",
-        pageNumber: 1,
-        search: true,
-        pagination: true,
-        columns: [{
-            field: 'imageEntity',
-            title: '图片',
-            align: 'center',
-            formatter: imageFormatter,
-            switchable: true,
-            width: 200
-        }, {
-            field: 'infoDescription',
-            title: '图片地址描述',
-            align: 'center',
-            switchable: true,
-            width: 200
-        }, {
-            field: 'coordinateEntity',
-            title: '坐标信息',
-            align: 'center',
-            formatter: coordinateFormatter,
-            switchable: true,
-            width: 200
-        }, {
-            field: 'provinceEntity',
-            title: '省份',
-            align: 'center',
-            formatter: provinceFormatter,
-            switchable: true,
-            width: 200
-        }, {
-            field: 'cityEntity',
-            title: '城市',
-            align: 'center',
-            formatter: cityFormatter,
-            switchable: true,
-            width: 200
-        }, {
-            field: 'areaEntity',
-            title: '区/县',
-            align: 'center',
-            formatter: areaFormatter,
-            switchable: true,
-            width: 200
-        }, {
-            field: 'infoUpdateTime',
-            title: '更新时间',
-            align: 'center',
-            switchable: true,
-            sortable: true,
-            width: 200
-        }, {
-            field: 'infoStatus',
-            title: '消息状态',
-            align: 'center',
-            formatter: infoStatusFormatter,
-            switchable: true,
-            sortable: true,
-            width: 200
-        },],
     });
 });
-
-// 获取预警消息
-$(function () {
-    $('#messageTable').bootstrapTable({
-        ajax: function (request) {
-            $.ajax({
-                type: "GET",
-                // /info/info/状态标识符（0特殊状态1全状态）/展示标识符(0不展示1展示2全部)/info
-                url: "/city-info/info/info/0/1/info",
-                contentType: "application/json;charset=utf-8",
-                dataType: "json",
-                data: '',
-                success: function (msg) {
-                    request.success({
-                        row: msg
-                    });
-                    $('#messageTable').bootstrapTable('load', msg.data);
-                },
-                error: function () {
-                    swal("错误", "预警消息表格数据获取失败", "error");
-                }
-            });
-        },
-
-        toolbar: '#toolbar',
-        singleSelect: true,
-        sidePagination: "client",
-        showRefresh: false,
-        sortName: "infoUpdateTime",
-        sortOrder: "desc",
-        pageSize: 10,
-        pageList: "[10, 25, 50, 100]",
-        pageNumber: 1,
-        search: true,
-        pagination: true,
-        columns: [{
-            field: 'imageEntity',
-            title: '图片',
-            align: 'center',
-            formatter: imageFormatter,
-            switchable: true,
-            width: 200
-        }, {
-            field: 'infoDescription',
-            title: '图片地址描述',
-            align: 'center',
-            switchable: true,
-            width: 200
-        }, {
-            field: 'coordinateEntity',
-            title: '坐标信息',
-            align: 'center',
-            formatter: coordinateFormatter,
-            switchable: true,
-            width: 200
-        }, {
-            field: 'provinceEntity',
-            title: '省份',
-            align: 'center',
-            formatter: provinceFormatter,
-            switchable: true,
-            width: 200
-        }, {
-            field: 'cityEntity',
-            title: '城市',
-            align: 'center',
-            formatter: cityFormatter,
-            switchable: true,
-            width: 200
-        }, {
-            field: 'areaEntity',
-            title: '区/县',
-            align: 'center',
-            formatter: areaFormatter,
-            switchable: true,
-            width: 200
-        }, {
-            field: 'infoUpdateTime',
-            title: '更新时间',
-            align: 'center',
-            switchable: true,
-            sortable: true,
-            width: 200
-        }, {
-            field: 'infoStatus',
-            title: '消息状态',
-            align: 'center',
-            formatter: infoStatusFormatter,
-            switchable: true,
-            sortable: true,
-            width: 200
-        },],
-    });
-});
-
-function imageFormatter(value) {
-    return '<img style="width: 125px;height: 125px" src="' + value.imageUrl + '">';
-}
-
-function coordinateFormatter(value) {
-    return value.longitude + "," + value.latitude;
-}
-
-function provinceFormatter(value) {
-    return value.provinceName;
-}
-
-function cityFormatter(value) {
-    return value.cityName;
-}
-
-function areaFormatter(value) {
-    return value.areaName;
-}
-
-function infoStatusFormatter(value) {
-    switch (value) {
-        case 0:
-            return "识别错误";
-        case 1:
-            return "无积水";
-        case 2:
-            return "积水";
-        case 3:
-            return "内涝";
-        case 4:
-            return "冰雪";
-    }
-}
 
 function uploadInfo() {
     swal("上传消息中，请稍后！", {buttons: false});
@@ -454,3 +280,155 @@ function imageHint() {
         confirmButtonColor: "#DD6B55",
     });
 }
+
+var accuracyChart = echarts.init(document.getElementById('accuracy'));
+// 指定图表的配置项和数据
+accuracy = {
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 10,
+        data: ['系统识别', '人工修改']
+    },
+    series: [
+        {
+            name: '识别来源',
+            type: 'pie',
+            radius: ['50%', '70%'],
+            avoidLabelOverlap: false,
+            label: {
+                show: false,
+                position: 'center'
+            },
+            emphasis: {
+                label: {
+                    show: true,
+                    fontSize: '30',
+                    fontWeight: 'bold'
+                }
+            },
+            labelLine: {
+                show: false
+            },
+            data: [
+                {value: 90, name: '系统识别'},
+                {value: 10, name: '人工修改'},
+            ]
+        }
+    ]
+};
+// 使用刚指定的配置项和数据显示图表。
+accuracyChart.setOption(accuracy);
+
+var sourceChart = echarts.init(document.getElementById('source'));
+source = {
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 10,
+        data: ['用户上传', '摄像头采集', '网络获取']
+    },
+    series: [
+        {
+            name: '图片来源',
+            type: 'pie',
+            radius: ['50%', '70%'],
+            avoidLabelOverlap: false,
+            label: {
+                show: false,
+                position: 'center'
+            },
+            emphasis: {
+                label: {
+                    show: true,
+                    fontSize: '30',
+                    fontWeight: 'bold'
+                }
+            },
+            labelLine: {
+                show: false
+            },
+            data: [
+                {value: 335, name: '用户上传'},
+                {value: 310, name: '摄像头采集'},
+                {value: 234, name: '网络获取'}
+            ]
+        }
+    ]
+};
+sourceChart.setOption(source);
+
+var sumChart = echarts.init(document.getElementById('sum'));
+sum = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        data: ['无积水', '积水', '内涝', '冰雪']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月','八月','九月','十月','十一月','十二月']
+    },
+    series: [
+        {
+            name: '无积水',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [320, 302, 301, 334, 390, 330, 320,120,213,253,123,252]
+        },
+        {
+            name: '积水',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [120, 132, 101, 134, 90, 230, 210,123,234,645,673,123]
+        },
+        {
+            name: '内涝',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [220, 182, 191, 234, 290, 330, 310,213,432,123,122,242]
+        },
+        {
+            name: '冰雪',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [150, 212, 201, 154, 190, 330, 410,234,123,232,322,311]
+        }
+    ]
+};
+sumChart.setOption(sum);
