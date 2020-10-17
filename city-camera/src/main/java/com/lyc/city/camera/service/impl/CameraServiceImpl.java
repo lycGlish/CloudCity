@@ -177,4 +177,9 @@ public class CameraServiceImpl extends ServiceImpl<CameraDao, CameraEntity> impl
         }
     }
 
+    @Override
+    public CameraEntity getCameraById(Long cameraId) {
+        return baseMapper.selectById(cameraId);
+    }
+
 }

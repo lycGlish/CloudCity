@@ -80,4 +80,7 @@ public class AllInfoTo {
 
     @TableField(exist = false)
     private MemberEntity memberEntity;
+
+    @TableField(exist = false)
+    private CameraEntity cameraEntity;
 }

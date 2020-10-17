@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author lyc
- * @date 2020/9/21 15:17
+ * @date 2020/10/16 16:37
  */
-@FeignClient("city-user")
-public interface MemberFeignService {
+@FeignClient("city-camera")
+public interface CameraFeignService {
 
-    @GetMapping("/user/member/getMemberNameById")
-    R getMemberNameById(@RequestParam Long memberId);
+    @GetMapping("/camera/camera/getCameraById")
+    R getCameraById(@RequestParam Long cameraId);
 }

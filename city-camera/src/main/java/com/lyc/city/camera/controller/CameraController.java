@@ -34,6 +34,12 @@ public class CameraController {
     @Autowired
     private RedissonClient redissonClient;
 
+    @GetMapping("/getCameraById")
+    public R getCameraById(@RequestParam Long cameraId){
+        CameraEntity cameraEntity = cameraService.getCameraById(cameraId);
+        return R.ok().put("data",cameraEntity);
+    }
+
     @PostMapping("/updateCamera")
     public R updateCamera(@RequestBody AllCameraTo cameraTo) {
         RLock cameraLock = redissonClient.getLock("camera-lock");

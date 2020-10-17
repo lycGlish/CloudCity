@@ -13,11 +13,11 @@ geolocation.getCurrentPosition(function (r) {
         alert('failed' + this.getStatus());
     }
 }, {enableHighAccuracy: true});
-//右上角，仅包含平移和缩放按钮
+// 右上角，仅包含平移和缩放按钮
 var top_right_navigation = new BMap.NavigationControl({
     anchor: BMAP_ANCHOR_TOP_RIGHT
 });
-//添加控件和比例尺
+// 添加控件和比例尺
 map.addControl(top_right_navigation);
 // 城市控件
 var size = new BMap.Size(10, 20);
@@ -26,10 +26,14 @@ map.addControl(new BMap.CityListControl({
     offset: size,
 }));
 var opts = {
-    width: 200,     // 信息窗口宽度
-    height: 200,     // 信息窗口高度
-    title: "预警信息", // 信息窗口标题
-    enableMessage: true//设置允许信息窗发送短息
+    // 信息窗口宽度
+    width: 200,
+    // 信息窗口高度
+    height: 200,
+    // 信息窗口标题
+    title: "预警信息",
+    // 设置允许信息窗发送短息
+    enableMessage: true
 };
 var data_info = [];
 
@@ -43,8 +47,10 @@ function addClickHandler(content, marker) {
 function openInfo(content, e) {
     var p = e.target;
     var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
-    var infoWindow = new BMap.InfoWindow(content, opts);  // 创建信息窗口对象
-    map.openInfoWindow(infoWindow, point); //开启信息窗口
+    // 创建信息窗口对象
+    var infoWindow = new BMap.InfoWindow(content, opts);
+    // 开启信息窗口
+    map.openInfoWindow(infoWindow, point);
 }
 
 $(document).ready(function () {
@@ -58,47 +64,37 @@ $(document).ready(function () {
         success: function (data) {
             data_info = data.data;
             for (var i = 0; i < data_info.length; i++) {
-                var myIcon="";
-                var marker="";
+                var color = "";
+                var myIcon = "";
+                var marker = "";
                 var content = "";
                 var status = "";
                 switch (data_info[i].infoStatus) {
                     case 0:
-                        myIcon = new BMap.Icon('../info/static/images/blue.png',new BMap.Size(30, 30));
-                        myIcon.setImageSize(new BMap.Size(30, 30));
+                        color = "blue";
                         status = "识别错误";
-                        marker = new BMap.Marker(new BMap.Point(data_info[i].coordinateEntity.longitude, data_info[i].coordinateEntity.latitude
-                        ),{icon:myIcon});
                         break;
                     case 1:
-                        myIcon = new BMap.Icon('../info/static/images/green.png',new BMap.Size(30, 30));
-                        myIcon.setImageSize(new BMap.Size(30, 30));
+                        color = "green";
                         status = "无积水";
-                        marker = new BMap.Marker(new BMap.Point(data_info[i].coordinateEntity.longitude, data_info[i].coordinateEntity.latitude
-                            ),{icon:myIcon});
                         break;
                     case 2:
-                        myIcon = new BMap.Icon('../info/static/images/yellow.png',new BMap.Size(30, 30));
-                        myIcon.setImageSize(new BMap.Size(30, 30));
+                        color = "yellow";
                         status = "积水";
-                        marker = new BMap.Marker(new BMap.Point(data_info[i].coordinateEntity.longitude, data_info[i].coordinateEntity.latitude
-                            ),{icon:myIcon});
                         break;
                     case 3:
-                        myIcon = new BMap.Icon('../info/static/images/red.png',new BMap.Size(30, 30));
-                        myIcon.setImageSize(new BMap.Size(30, 30));
+                        color = "red";
                         status = "内涝";
-                        marker = new BMap.Marker(new BMap.Point(data_info[i].coordinateEntity.longitude, data_info[i].coordinateEntity.latitude
-                            ),{icon:myIcon});
                         break;
                     case 4:
-                        myIcon = new BMap.Icon('../info/static/images/pink.png',new BMap.Size(30, 30));
-                        myIcon.setImageSize(new BMap.Size(30, 30));
+                        color = "pink";
                         status = "冰雪";
-                        marker = new BMap.Marker(new BMap.Point(data_info[i].coordinateEntity.longitude, data_info[i].coordinateEntity.latitude
-                            ),{icon:myIcon});
                         break;
                 }
+                myIcon = new BMap.Icon('../info/static/images/' + color + '.png', new BMap.Size(30, 30));
+                myIcon.setImageSize(new BMap.Size(30, 30));
+                marker = new BMap.Marker(new BMap.Point(data_info[i].coordinateEntity.longitude, data_info[i].coordinateEntity.latitude
+                ), {icon: myIcon});
                 content += "更新时间:" + data_info[i].infoUpdateTime.toString() + "<br>";
                 content += "道路状态:" + status + "<br>";
                 content += "图片:<img style='float:right;margin:4px' id='imgDemo' src='" + data_info[i].imageEntity.imageUrl.toString() +
@@ -386,7 +382,7 @@ sum = {
     },
     yAxis: {
         type: 'category',
-        data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月','八月','九月','十月','十一月','十二月']
+        data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
     },
     series: [
         {
@@ -397,7 +393,7 @@ sum = {
                 show: true,
                 position: 'insideRight'
             },
-            data: [320, 302, 301, 334, 390, 330, 320,120,213,253,123,252]
+            data: [320, 302, 301, 334, 390, 330, 320, 120, 213, 253, 123, 252]
         },
         {
             name: '积水',
@@ -407,7 +403,7 @@ sum = {
                 show: true,
                 position: 'insideRight'
             },
-            data: [120, 132, 101, 134, 90, 230, 210,123,234,645,673,123]
+            data: [120, 132, 101, 134, 90, 230, 210, 123, 234, 645, 673, 123]
         },
         {
             name: '内涝',
@@ -417,7 +413,7 @@ sum = {
                 show: true,
                 position: 'insideRight'
             },
-            data: [220, 182, 191, 234, 290, 330, 310,213,432,123,122,242]
+            data: [220, 182, 191, 234, 290, 330, 310, 213, 432, 123, 122, 242]
         },
         {
             name: '冰雪',
@@ -427,7 +423,7 @@ sum = {
                 show: true,
                 position: 'insideRight'
             },
-            data: [150, 212, 201, 154, 190, 330, 410,234,123,232,322,311]
+            data: [150, 212, 201, 154, 190, 330, 410, 234, 123, 232, 322, 311]
         }
     ]
 };

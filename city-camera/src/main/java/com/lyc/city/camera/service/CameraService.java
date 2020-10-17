@@ -23,5 +23,6 @@ public interface CameraService extends IService<CameraEntity> {
 
     void saveCamera(AllCameraTo cameraTo);
 
+    CameraEntity getCameraById(Long cameraId);
 }
 

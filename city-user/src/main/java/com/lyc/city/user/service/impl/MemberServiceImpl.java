@@ -42,7 +42,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
     }
 
     /**
-     * 封禁用户
+     * 封禁用户接口
      *
      * @param memberId 用户id
      */
@@ -54,6 +54,12 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         baseMapper.updateById(memberEntity);
     }
 
+    /**
+     * 登录接口
+     *
+     * @param memberEntity 用户登录信息
+     * @return 用户信息
+     */
     @Override
     public MemberEntity doLogin(MemberEntity memberEntity) {
         return baseMapper.selectOne(new QueryWrapper<MemberEntity>().lambda()
@@ -61,6 +67,11 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
                 .eq(MemberEntity::getPassword, memberEntity.getPassword()));
     }
 
+    /**
+     * 注册接口
+     *
+     * @param memberEntity 用户信息
+     */
     @Override
     public void doRegister(MemberEntity memberEntity) {
         memberEntity.setCreateTime(new Date());
@@ -75,5 +86,17 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
     @Override
     public MemberEntity getMemberByPhone(String phone) {
         return baseMapper.selectOne(new QueryWrapper<MemberEntity>().eq("phone",phone));
+    }
+
+    /**
+     * 根据id查询用户名
+     *
+     * @param memberId 用户id
+     * @return 用户名
+     */
+    @Override
+    public MemberEntity getMemberNameById(Long memberId) {
+        QueryWrapper<MemberEntity> wrapper = new QueryWrapper<>();
+        return baseMapper.selectOne(wrapper.select("name").eq("id",memberId));
     }
 }

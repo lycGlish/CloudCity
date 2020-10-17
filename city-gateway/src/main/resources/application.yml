@@ -63,16 +63,6 @@ spring:
     port: 6379
     password: lyc1289choose
 
-#security:
-#  oauth2:
-#    client:
-#      client-id: client
-#      client-secret: secret
-#      access-token-uri: http://localhost:20000/oauth/token
-#      user-authorization-uri: http://localhost:20000/oauth/authorize
-#    resource:
-#      token-info-uri: http://localhost:20000/oauth/check_token
-
 server:
   port: 88
 

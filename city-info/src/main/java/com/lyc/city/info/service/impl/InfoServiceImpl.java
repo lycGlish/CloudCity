@@ -8,12 +8,14 @@ import com.lyc.city.constant.HttpRemoteConstant;
 import com.lyc.city.constant.IdentifyConstant;
 import com.lyc.city.constant.SourceConstant;
 import com.lyc.city.entity.*;
+import com.lyc.city.info.feign.CameraFeignService;
 import com.lyc.city.info.feign.MemberFeignService;
 import com.lyc.city.info.service.*;
 import com.lyc.city.info.vo.InfoVo;
 import com.lyc.city.to.AllInfoTo;
 import com.lyc.city.utils.HttpRemoteUtil;
 import com.lyc.city.utils.PageUtils;
+import com.sun.xml.internal.bind.v2.TODO;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
@@ -54,6 +56,12 @@ public class InfoServiceImpl extends ServiceImpl<InfoDao, InfoEntity> implements
 
     @Autowired
     private CityService cityService;
+
+    @Autowired
+    private CameraFeignService cameraFeignService;
+
+    @Autowired
+    private MemberFeignService memberFeignService;
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
@@ -221,11 +229,18 @@ public class InfoServiceImpl extends ServiceImpl<InfoDao, InfoEntity> implements
                 allInfoTos = allInfoTos.stream().peek(allInfoTo -> allInfoTo.setProvinceEntity(provinceService.
                         getProvinceEntityByProvinceCode(allInfoTo.getCityEntity().getProvinceCode()))).collect(Collectors.toList());
 
-                //TODO 调用远程用户service获取所有消息里面的用户详情信息(从session中获取用户id)
-//                allInfoTos = allInfoTos.stream().peek(allInfoTo -> allInfoTo.setMemberEntity(
-//                        JSONObject.parseObject(JSON.toJSONString(memberFeignService.
-//                                getMemberById(allInfoTo.getMemberEntity().getId()).get("data")), MemberEntity.class)))
-//                        .collect(Collectors.toList());
+                // 调用远程用户service获取所有消息里面的用户或摄像头详情信息(只返回用户或摄像头的名字)
+                allInfoTos = allInfoTos.stream().peek(allInfoTo -> {
+                    if (allInfoTo.getInfoSource() == SourceConstant.ImageEnum.IMAGE_SOURCE_USER.getCode()) {
+                        allInfoTo.setMemberEntity(
+                                JSONObject.parseObject(JSON.toJSONString(memberFeignService.
+                                        getMemberNameById(allInfoTo.getInfoUploader()).get("data")), MemberEntity.class));
+                    } else if (allInfoTo.getInfoSource() == SourceConstant.ImageEnum.IMAGE_SOURCE_CAMERA.getCode()) {
+                        allInfoTo.setCameraEntity(
+                                JSONObject.parseObject(JSON.toJSONString(cameraFeignService.
+                                        getCameraById(allInfoTo.getInfoUploader()).get("data")), CameraEntity.class));
+                    }
+                }).collect(Collectors.toList());
 
                 stringRedisTemplate.opsForValue().set(status + "/" + infoFlag + "/info", JSON.toJSONString(allInfoTos),
                         1, TimeUnit.HOURS);

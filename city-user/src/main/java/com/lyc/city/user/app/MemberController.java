@@ -11,7 +11,9 @@ import com.lyc.city.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -37,6 +39,12 @@ public class MemberController {
         return R.ok().put("data", count);
     }
 
+    @GetMapping("/getMemberNameById")
+    public R getMemberNameById(@RequestParam("memberId") Long memberId) {
+        MemberEntity memberEntity = memberService.getMemberNameById(memberId);
+        return R.ok().put("data", memberEntity);
+    }
+
     @GetMapping("/getMemberById")
     public R getMemberById(@RequestParam("memberId") Long memberId) {
         MemberEntity memberEntity = memberService.getMemberById(memberId);
@@ -55,6 +63,7 @@ public class MemberController {
         if (memberInfo != null) {
             HttpSession session = request.getSession();
             session.setAttribute("member", memberInfo);
+            request.setAttribute("member", memberInfo);
         }
         return R.ok().put("data", memberInfo);
     }
