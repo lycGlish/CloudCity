@@ -13,5 +13,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface CameraFeignService {
 
     @GetMapping("/camera/camera/getCameraById")
-    R getCameraById(@RequestParam Long cameraId);
+    R getCameraById(@RequestParam("cameraId") Long cameraId);
 }

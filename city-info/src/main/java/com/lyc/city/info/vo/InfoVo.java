@@ -1,6 +1,7 @@
 package com.lyc.city.info.vo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -52,10 +53,12 @@ public class InfoVo {
     /**
      * 消息创建时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date infoCreateTime;
     /**
      * 消息更新时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date infoUpdateTime;
 
     @TableField(exist = false)

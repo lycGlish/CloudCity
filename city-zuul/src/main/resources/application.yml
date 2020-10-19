@@ -1,0 +1,70 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.137.130:8848
+  application:
+    name: city-gateway
+  redis:
+    host: 192.168.137.130
+    port: 6379
+    password: lyc1289choose
+  session:
+    store-type: redis
+
+server:
+  port: 88
+
+logging:
+  level:
+    com.lyc.city: debug
+
+zuul:
+  host:
+    connect-timeout-millis: 15000 #HTTP连接超时要比Hystrix的大
+    socket-timeout-millis: 60000   #socket超时
+  routes:
+    city-info:
+      path: /city-info/**
+      serviceId: city-info
+
+    info-static:
+      path: /info/**
+      serviceId: city-info
+      stripPrefix: false
+
+    city-manager:
+      path: /city-manager/**
+      serviceId: city-manager
+
+    manager-static:
+      path: /manager/**
+      serviceId: city-manager
+      stripPrefix: false
+
+    city-camera:
+      path: /city-camera/**
+      serviceId: city-camera
+
+    camera-static:
+      path: /camera/**
+      serviceId: city-camera
+      stripPrefix: false
+
+    city-user:
+      path: /city-user/**
+      serviceId: city-user
+
+    user-static:
+      path: /user/**
+      serviceId: city-user
+      stripPrefix: false
+
+    city-third-party:
+      path: /city-third-party/**
+      serviceId: city-third-party
+  sensitiveHeaders:
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000

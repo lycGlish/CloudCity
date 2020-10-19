@@ -15,9 +15,9 @@
         <module>city-gateway</module>
         <module>city-manager</module>
         <module>city-camera</module>
-        <module>city-auth-server</module>
         <module>city-user</module>
         <module>city-auth</module>
+        <module>city-zuul</module>
     </modules>
 
     <build>

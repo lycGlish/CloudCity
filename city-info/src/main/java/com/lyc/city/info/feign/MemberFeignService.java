@@ -13,5 +13,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface MemberFeignService {
 
     @GetMapping("/user/member/getMemberNameById")
-    R getMemberNameById(@RequestParam Long memberId);
+    R getMemberNameById(@RequestParam("memberId") Long memberId);
 }

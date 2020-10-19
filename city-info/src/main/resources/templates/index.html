@@ -123,24 +123,25 @@
                     </tr>
                     </thead>
                     <tbody class="card-body">
-                    <tr class="col-sm-6" th:each="statusInfo:${statusInfos}">
-                        <td class="col-sm-6 col-md-offset-2" style='float:left'>
+                    <tr class="col-sm-3" th:each="statusInfo:${statusInfos}">
+                        <td style='float:left'>
                             <img class="img-responsive center-block" style="width: 125px;height: 125px"
                                  th:src="${statusInfo.imageEntity.imageUrl}" th:title="'坐标:'
                              +${statusInfo.coordinateEntity.longitude}+','+${statusInfo.coordinateEntity.latitude}+'&#10;' +
                             '省份：'+${statusInfo.provinceEntity.provinceName}+'&#10;' +
                             '城市：'+${statusInfo.cityEntity.cityName}+'&#10;' +
                             '区县：'+${statusInfo.areaEntity.areaName}">
-                            <h5 class="card-title col-md-offset-2"
-                                th:text="'图片地址描述：'+${statusInfo.infoDescription}"></h5>
+                            <h5 class="card-title" style="text-align:center"
+                                th:text="${statusInfo.infoDescription}"></h5>
                             <span th:switch="${statusInfo.infoStatus}">
-                                <p class="card-text col-md-offset-2" th:case="0">消息状态：识别错误</p>
-                                <p class="card-text col-md-offset-2" th:case="1">消息状态：无积水</p>
-                                <p class="card-text col-md-offset-2" th:case="2">消息状态：积水</p>
-                                <p class="card-text col-md-offset-2" th:case="3">消息状态：内涝</p>
-                                <p class="card-text col-md-offset-2" th:case="4">消息状态：冰雪</p>
+                                <p class="card-text" style="text-align:center" th:case="0">消息状态：识别错误</p>
+                                <p class="card-text" style="text-align:center" th:case="1">消息状态：无积水</p>
+                                <p class="card-text" style="text-align:center" th:case="2">消息状态：积水</p>
+                                <p class="card-text" style="text-align:center" th:case="3">消息状态：内涝</p>
+                                <p class="card-text" style="text-align:center" th:case="4">消息状态：冰雪</p>
                             </span>
-                            <p class="card-text col-md-offset-1" th:text="'更新时间：'+${statusInfo.infoUpdateTime}"></p>
+                            <p class="card-text col-md-offset-1" style="text-align:center" th:text="
+                            ${#dates.format(statusInfo.infoUpdateTime,'dd/MM/yyyy HH:mm:ss')}" ></p>
                         </td>
                     </tr>
                     </tbody>
@@ -173,7 +174,7 @@
             <div class="col-md-8 col-md-offset-2 text-center">
                 <h2 class="section-title">项目技术</h2>
                 <p class="section-para">网站基于SpringCloud+mybatis-plus搭建后端框架，nacos作为注册中心，openFeign处理远程调用，
-                    redis实现缓存，文件存储技术采用阿里的oss分布式文件管理，gateway对网关进行处理，前端由bootstrap+thymeleaf搭建，
+                    redis实现缓存，文件存储技术采用阿里的oss分布式文件管理，zuul对网关进行处理，前端由bootstrap+thymeleaf搭建，
                     图片智能识别技术通过TensorFlow训练模型，并整合flask框架提供远程识别api</p>
             </div>
         </div>

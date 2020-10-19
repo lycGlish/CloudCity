@@ -113,7 +113,7 @@ $(document).ready(function () {
 $(document).ready(function () {
     $("#example").dataTable({
         "bProcessing": true, //DataTables载入数据时，是否显示‘进度’提示
-        "aLengthMenu": [6, 12, 20], //更改显示记录数选项
+        "aLengthMenu": [12, 16, 20], //更改显示记录数选项
         "sPaginationType": "full_numbers", //详细分页组，可以支持直接跳转到某页
         "bAutoWidth": true, //是否自适应宽度
         //"bJQueryUI" : true,

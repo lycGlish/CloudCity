@@ -4,11 +4,13 @@
 
     消息上传来源接口优化  
     首页细节优化  
+    zuul网关模块新增，移除gateway网关模块  
+    网关未登录跳转初级功能完成  
 
 ## 接口模块  
 
  * city-common          公共模块        
- * city-gateway         网关模块               88  
+ * city-zuul            网关模块               88  
  * city-info            核心信息模块          7000  
  * city-manager         后台管理模块          8000  
  * city-camera          摄像头模块            9000  
@@ -32,7 +34,7 @@
  *  mybatis-plus  
  *  nacos  
  *  openFeign  
- *  gateway  
+ *  zuul  
  *  redis  
  *  springSession  
  
