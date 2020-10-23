@@ -60,8 +60,7 @@
                                         th:if="${session.member.memberLevel} ge 1" onclick="toManager()">后台管理
                                 </button>
                                 <button type="button" class="btn btn-default navbar-btn"
-                                        th:if="${session.member.memberLevel} eq 0" th:text="${session.member.name}"
-                                        onclick="toLogout()">
+                                        th:if="${session.member.memberLevel} eq 0" onclick="toLogout()">注销
                                 </button>
                             </li>
                         </ul>

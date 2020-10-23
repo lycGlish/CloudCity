@@ -2,10 +2,7 @@
 
 ## 版本更新  
 
-    消息上传来源接口优化  
-    首页细节优化  
-    zuul网关模块新增，移除gateway网关模块  
-    网关未登录跳转初级功能完成  
+    登录bug修复  
 
 ## 接口模块  
 
@@ -50,3 +47,13 @@
  *  linux+docker  
  *  oss  
  *  python+TensorFlow+flask  
+ 
+## 项目效果  
+
+![image](https://github.com/lycGlish/CloudCity/blob/master/images/infoIndex-1.png)
+![image](https://github.com/lycGlish/CloudCity/blob/master/images/infoMap.png)
+![image](https://github.com/lycGlish/CloudCity/blob/master/images/infoMessage.png)
+![image](https://github.com/lycGlish/CloudCity/blob/master/images/infoAnalysis.png)
+![image](https://github.com/lycGlish/CloudCity/blob/master/images/login.png)
+![image](https://github.com/lycGlish/CloudCity/blob/master/images/backgroundIndex.png)
+![image](https://github.com/lycGlish/CloudCity/blob/master/images/backgroundInfo.png)

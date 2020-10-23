@@ -78,11 +78,23 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         baseMapper.insert(memberEntity);
     }
 
+    /**
+     * 根据id查询用户类
+     *
+     * @param memberId 用户id
+     * @return 用户类
+     */
     @Override
     public MemberEntity getMemberById(Long memberId) {
         return baseMapper.selectById(memberId);
     }
 
+    /**
+     * 根据电话查询用户类
+     *
+     * @param phone 电话号码
+     * @return 用户类
+     */
     @Override
     public MemberEntity getMemberByPhone(String phone) {
         return baseMapper.selectOne(new QueryWrapper<MemberEntity>().eq("phone",phone));

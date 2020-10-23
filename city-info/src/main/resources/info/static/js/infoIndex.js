@@ -252,7 +252,26 @@ function toLogin() {
 }
 
 function toLogout() {
-
+    swal({
+        title: "注销",
+        text: "确认注销？",
+        icon: 'warning',
+        buttons: {
+            cancel: {
+                text: "取消",
+                value: "",
+                visible: true,
+                closeModal: true,
+            },
+            confirm: {
+                text: "确定",
+                value: true,
+                visible: true,
+                closeModal: true
+            }
+        },
+        confirmButtonColor: "#DD6B55",
+    });
     window.location.href = "http://localhost:88/city-manager/logout";
 }
 
@@ -393,7 +412,7 @@ sum = {
                 show: true,
                 position: 'insideRight'
             },
-            data: [320, 302, 301, 334, 390, 330, 320, 120, 213, 253, 123, 252]
+            data: [12, 9, 10, 15, 14, 12, 13, 12, 16, 8, 10, 11]
         },
         {
             name: '积水',
@@ -403,7 +422,7 @@ sum = {
                 show: true,
                 position: 'insideRight'
             },
-            data: [120, 132, 101, 134, 90, 230, 210, 123, 234, 645, 673, 123]
+            data: [52, 61, 57, 53, 64, 67, 52, 53, 45, 42, 54, 52]
         },
         {
             name: '内涝',
@@ -413,7 +432,7 @@ sum = {
                 show: true,
                 position: 'insideRight'
             },
-            data: [220, 182, 191, 234, 290, 330, 310, 213, 432, 123, 122, 242]
+            data: [12, 16, 16, 23, 12, 23, 43, 32, 23, 12, 14, 13]
         },
         {
             name: '冰雪',
@@ -423,7 +442,7 @@ sum = {
                 show: true,
                 position: 'insideRight'
             },
-            data: [150, 212, 201, 154, 190, 330, 410, 234, 123, 232, 322, 311]
+            data: [8, 7, 1, 0, 0, 0, 0, 0, 0, 2, 3, 5]
         }
     ]
 };

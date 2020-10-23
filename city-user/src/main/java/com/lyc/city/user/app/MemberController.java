@@ -63,7 +63,6 @@ public class MemberController {
         if (memberInfo != null) {
             HttpSession session = request.getSession();
             session.setAttribute("member", memberInfo);
-            request.setAttribute("member", memberInfo);
         }
         return R.ok().put("data", memberInfo);
     }

@@ -1,6 +1,7 @@
 package com.lyc.city.zuul.filter;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.lyc.city.entity.MemberEntity;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -63,16 +64,22 @@ public class AuthFilter extends ZuulFilter {
 //        // 身份信息和权限信息存入json，转发给微服务
 //        ctx.addZuulRequestHeader("json-token", EncryptUtil.encodeUTF8StringBase64(JSON.toJSONString(jsonToken)));
 
-        HttpServletRequest request = ctx.getRequest();
-        Object member = request.getSession().getAttribute("member");
-        System.out.println(member);
-        String url = ctx.getRequest().getRequestURI();
-        if(url.equals("/city-manager/")){
-            try{
-                ctx.getResponse().sendRedirect("/city-user/login");
-            }catch (IOException e){
-
+        try {
+            HttpServletRequest request = ctx.getRequest();
+            Object memberObject = request.getSession().getAttribute("member");
+            String url = ctx.getRequest().getRequestURI();
+            if (url.equals("/city-manager/")) {
+                if (memberObject == null) {
+                    ctx.getResponse().sendRedirect("/city-user/login");
+                }else {
+                    MemberEntity member = JSONObject.parseObject(JSON.toJSONString(memberObject), MemberEntity.class);
+                    if (member.getMemberLevel() == 0) {
+                        ctx.getResponse().sendRedirect("/city-info/");
+                    }
+                }
             }
+        } catch (IOException e) {
+            System.out.println("IOException");
         }
         return null;
     }
