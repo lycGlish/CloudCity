@@ -128,11 +128,13 @@ public class InfoServiceImpl extends ServiceImpl<InfoDao, InfoEntity> implements
             CoordinateEntity coordinateEntity = coordinateService.
                     selectExistCoordinateByAll(infoVo.getLongitude(), infoVo.getLatitude());
             if (coordinateEntity == null) {
+                coordinateEntity = new CoordinateEntity();
                 // 坐标不存在插入坐标并返回坐标id
                 coordinateId = coordinateService.saveBackCoordinateId(infoVo.getLongitude(), infoVo.getLatitude());
+                coordinateEntity.setCoordinateId(coordinateId);
             }
             // 坐标存在，直接存入坐标id
-            infoEntity.setInfoCoordinate(coordinateId);
+            infoEntity.setInfoCoordinate(coordinateEntity.getCoordinateId());
 
             // 调用远程图像识别服务识别图片并返回状态值
             Integer imageStatus = imageService.identifyImage(infoVo.getImgUrl());

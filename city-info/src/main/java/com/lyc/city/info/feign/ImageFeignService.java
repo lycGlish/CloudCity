@@ -4,6 +4,7 @@ import com.lyc.city.utils.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,4 +17,7 @@ public interface ImageFeignService {
 
     @PostMapping(value = "/oss/policy", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     R policy(@RequestPart("multipartFile") MultipartFile multipartFile);
+
+    @PostMapping(value = "/fastDFS/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    R fastDFS(@RequestPart("multipartFile") MultipartFile multipartFile);
 }

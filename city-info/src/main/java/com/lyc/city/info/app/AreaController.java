@@ -57,46 +57,4 @@ public class AreaController {
         PageUtils page = areaService.queryPage(params);
         return R.ok().put("page", page);
     }
-
-
-    /**
-     * 信息
-     */
-    @RequestMapping("/info/{areaId}")
-    //@RequiresPermissions("info:area:info")
-    public R info(@PathVariable("areaId") Integer areaId){
-		AreaEntity area = areaService.getById(areaId);
-        return R.ok().put("area", area);
-    }
-
-    /**
-     * 保存
-     */
-    @RequestMapping("/save")
-    //@RequiresPermissions("info:area:save")
-    public R save(@RequestBody AreaEntity area){
-		areaService.save(area);
-        return R.ok();
-    }
-
-    /**
-     * 修改
-     */
-    @RequestMapping("/update")
-    //@RequiresPermissions("info:area:update")
-    public R update(@RequestBody AreaEntity area){
-		areaService.updateById(area);
-        return R.ok();
-    }
-
-    /**
-     * 删除
-     */
-    @RequestMapping("/delete")
-    //@RequiresPermissions("info:area:delete")
-    public R delete(@RequestBody Integer[] areaIds){
-		areaService.removeByIds(Arrays.asList(areaIds));
-        return R.ok();
-    }
-
 }

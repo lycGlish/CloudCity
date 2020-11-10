@@ -2,7 +2,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.137.130:8848
+        server-addr: 192.168.125.128:8848
     gateway:
       discovery:
         locator:
@@ -59,7 +59,7 @@ spring:
   application:
     name: city-gateway
   redis:
-    host: 192.168.137.130
+    host: 192.168.125.128
     port: 6379
     password: lyc1289choose
 

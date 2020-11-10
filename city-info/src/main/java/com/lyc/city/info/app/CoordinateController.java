@@ -63,38 +63,4 @@ public class CoordinateController {
 
         return R.ok().put("coordinate", coordinate);
     }
-
-    /**
-     * 保存
-     */
-    @RequestMapping("/save")
-    //@RequiresPermissions("info:coordinate:save")
-    public R save(@RequestBody CoordinateEntity coordinate) {
-        coordinateService.save(coordinate);
-
-        return R.ok();
-    }
-
-    /**
-     * 修改
-     */
-    @RequestMapping("/update")
-    //@RequiresPermissions("info:coordinate:update")
-    public R update(@RequestBody CoordinateEntity coordinate) {
-        coordinateService.updateById(coordinate);
-
-        return R.ok();
-    }
-
-    /**
-     * 删除
-     */
-    @RequestMapping("/delete")
-    //@RequiresPermissions("info:coordinate:delete")
-    public R delete(@RequestBody Long[] coordinateIds) {
-        coordinateService.removeByIds(Arrays.asList(coordinateIds));
-
-        return R.ok();
-    }
-
 }

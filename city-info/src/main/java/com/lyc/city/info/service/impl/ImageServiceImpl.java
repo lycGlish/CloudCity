@@ -19,7 +19,6 @@ import com.lyc.city.info.dao.ImageDao;
 import com.lyc.city.entity.ImageEntity;
 import com.lyc.city.info.service.ImageService;
 
-
 @Service("imageService")
 @Slf4j
 public class ImageServiceImpl extends ServiceImpl<ImageDao, ImageEntity> implements ImageService {

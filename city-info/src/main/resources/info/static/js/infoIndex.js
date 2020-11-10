@@ -164,7 +164,7 @@ function uploadInfo() {
             }, 100);
             setTimeout(function () {
                 window.location.reload();
-            }, 10000);
+            }, 5000);
         },
         error: function () {
             swal.close();
@@ -221,7 +221,7 @@ function uploadImg() {
     swal("上传图片中，请稍后！", {buttons: false});
     $.ajax({
         type: "POST",
-        url: "/city-info/info/image/upload/image",
+        url: "/city-info/info/image/fast/upload",
         cache: false,
         contentType: false,
         processData: false,

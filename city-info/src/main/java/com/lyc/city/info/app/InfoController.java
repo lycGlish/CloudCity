@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSON;
+import com.lyc.city.entity.MemberEntity;
 import com.lyc.city.info.vo.InfoVo;
 import com.lyc.city.to.AllInfoTo;
 import com.lyc.city.utils.PageUtils;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.lyc.city.entity.InfoEntity;
 import com.lyc.city.info.service.InfoService;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * @author lyc
@@ -82,31 +86,11 @@ public class InfoController {
      */
     @PostMapping("/saveInfoByUser")
     //@RequiresPermissions("info:info:save")
-    public R saveInfoByUser(@RequestBody InfoVo infoVo) {
-
+    public R saveInfoByUser(@RequestBody InfoVo infoVo, HttpSession session) {
+        MemberEntity member = JSON.parseObject(JSON.toJSONString(session.getAttribute("member")),MemberEntity.class);
+        infoVo.setInfoUploader(member.getId());
         infoService.saveInfoByUser(infoVo);
         return R.ok();
 
     }
-
-    /**
-     * 修改
-     */
-    @RequestMapping("/update")
-    //@RequiresPermissions("info:info:update")
-    public R update(@RequestBody InfoEntity info) {
-        infoService.updateById(info);
-        return R.ok();
-    }
-
-    /**
-     * 删除
-     */
-    @RequestMapping("/delete")
-    //@RequiresPermissions("info:info:delete")
-    public R delete(@RequestBody Long[] infoIds) {
-        infoService.removeByIds(Arrays.asList(infoIds));
-        return R.ok();
-    }
-
 }

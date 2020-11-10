@@ -125,14 +125,4 @@ public class MemberController {
         return R.ok();
     }
 
-    /**
-     * 删除
-     */
-    @RequestMapping("/delete")
-    //@RequiresPermissions("camera:member:delete")
-    public R delete(@RequestBody Long[] ids) {
-        memberService.removeByIds(Arrays.asList(ids));
-        return R.ok();
-    }
-
 }

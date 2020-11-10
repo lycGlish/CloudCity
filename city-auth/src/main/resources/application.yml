@@ -2,16 +2,16 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.137.130:8848
+        server-addr: 192.168.125.128:8848
   datasource:
     username: root
     password: lyc1289choose
-    jdbc-url: jdbc:mysql://192.168.137.130:3306/city_oauth?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    jdbc-url: jdbc:mysql://192.168.125.128:3306/city_oauth?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: city-auth
   redis:
-    host: 192.168.137.130
+    host: 192.168.125.128
     port: 6379
     password: lyc1289choose
   thymeleaf:

@@ -2,12 +2,12 @@ spring:
   datasource:
     username: root
     password: lyc1289choose
-    url: jdbc:mysql://192.168.137.130:3306/city_cms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.168.125.128:3306/city_cms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.137.130:8848
+        server-addr: 192.168.125.128:8848
   application:
     name: city-camera
   jackson:
@@ -21,7 +21,7 @@ spring:
   mvc:
     static-path-pattern: /static/**
   redis:
-    host: 192.168.137.130
+    host: 192.168.125.128
     port: 6379
     password: lyc1289choose
 
