@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -21,7 +22,7 @@ import java.util.Map;
 public class FileCoordinateUtil {
 
     public static Map<String, String> fileCoordinateCheck(MultipartFile file) {
-        Map<String, String> coordinate = null;
+        Map<String, String> coordinate = new HashMap<>();
         File localFile;
         try {
             // 判断上传图片是否自带经纬度坐标与时间

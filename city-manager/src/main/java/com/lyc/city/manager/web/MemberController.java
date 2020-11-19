@@ -28,8 +28,22 @@ public class MemberController {
         return "redirect:http://localhost:88/city-info/";
     }
 
-    @GetMapping("member")
-    public String member(Model model) {
+    @GetMapping("memberInfo")
+    public String memberInfo(Model model) {
+
+        // 一级分类
+        List<MenuEntity> firstMenus = menuService.getFirstMenu();
+        // 二级分类
+        List<MenuEntity> secondMenus = menuService.getSecondMenu();
+
+        model.addAttribute("firstMenus", firstMenus);
+        model.addAttribute("secondMenus", secondMenus);
+
+        return "member/memberInfo";
+    }
+
+    @GetMapping("memberList")
+    public String memberList(Model model) {
 
         // 一级分类
         List<MenuEntity> firstMenus = menuService.getFirstMenu();

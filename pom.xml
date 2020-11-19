@@ -12,7 +12,6 @@
         <module>city-common</module>
         <module>city-info</module>
         <module>city-third-party</module>
-        <module>city-gateway</module>
         <module>city-manager</module>
         <module>city-camera</module>
         <module>city-user</module>

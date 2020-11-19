@@ -2,7 +2,6 @@ package com.lyc.city.info.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
 import com.lyc.city.constant.FlagConstant;
 import com.lyc.city.constant.HttpRemoteConstant;
 import com.lyc.city.constant.IdentifyConstant;
@@ -35,7 +34,6 @@ import com.lyc.city.utils.Query;
 import com.lyc.city.info.dao.InfoDao;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
-
 
 @Service("infoService")
 @Slf4j
@@ -89,7 +87,6 @@ public class InfoServiceImpl extends ServiceImpl<InfoDao, InfoEntity> implements
         infoLock.lock();
         try {
             InfoEntity infoEntity = new InfoEntity();
-
             // 属性对拷
             BeanUtils.copyProperties(infoVo, infoEntity);
 
@@ -115,22 +112,21 @@ public class InfoServiceImpl extends ServiceImpl<InfoDao, InfoEntity> implements
                     coordinateApi = coordinateApi.substring(0, coordinateApi.length() - 1);
                     JSONObject json = JSONObject.parseObject(coordinateApi);
                     if (json.get("status").toString().equals("0")) {
-                        log.info("百度地图查找到匹配的经纬度！");
+                        // 百度地图查找到匹配的经纬度
                         infoVo.setLongitude(json.getJSONObject("result").getJSONObject("location").getString("lng"));
                         infoVo.setLatitude(json.getJSONObject("result").getJSONObject("location").getString("lat"));
                     } else {
-                        log.info("百度地图查没有找到匹配的经纬度！");
+                        log.error("百度地图查没有找到匹配的经纬度！");
                     }
                 }
             }
             // 查询坐标是否存在
-            Long coordinateId = null;
             CoordinateEntity coordinateEntity = coordinateService.
                     selectExistCoordinateByAll(infoVo.getLongitude(), infoVo.getLatitude());
             if (coordinateEntity == null) {
                 coordinateEntity = new CoordinateEntity();
                 // 坐标不存在插入坐标并返回坐标id
-                coordinateId = coordinateService.saveBackCoordinateId(infoVo.getLongitude(), infoVo.getLatitude());
+                Long coordinateId = coordinateService.saveBackCoordinateId(infoVo.getLongitude(), infoVo.getLatitude());
                 coordinateEntity.setCoordinateId(coordinateId);
             }
             // 坐标存在，直接存入坐标id
@@ -198,16 +194,14 @@ public class InfoServiceImpl extends ServiceImpl<InfoDao, InfoEntity> implements
 
                 // 当传入的需求不为正常状态则返回所有异常状态的消息
                 if (status != IdentifyConstant.IdentifyStatusEnum.IMAGE_IDENTIFY_NORMAL.getCode()) {
-                    allInfoTos = allInfoTos.stream().filter(infoEntity -> {
-                        return infoEntity.getInfoStatus() != IdentifyConstant.IdentifyStatusEnum.IMAGE_IDENTIFY_NORMAL.getCode();
-                    }).collect(Collectors.toList());
+                    allInfoTos = allInfoTos.stream().filter(infoEntity -> infoEntity.getInfoStatus()
+                            != IdentifyConstant.IdentifyStatusEnum.IMAGE_IDENTIFY_NORMAL.getCode()).collect(Collectors.toList());
                 }
 
                 // 当传入的需求不为全部展示时则筛选消息
                 if (infoFlag != FlagConstant.InfoEnum.INFO_ALL.getCode()) {
-                    allInfoTos = allInfoTos.stream().filter(infoEntity -> {
-                        return infoEntity.getInfoFlag().equals(infoFlag);
-                    }).collect(Collectors.toList());
+                    allInfoTos = allInfoTos.stream().filter(infoEntity ->
+                            infoEntity.getInfoFlag().equals(infoFlag)).collect(Collectors.toList());
                 }
 
                 // 调用图片service获取所有消息里面的图片详情

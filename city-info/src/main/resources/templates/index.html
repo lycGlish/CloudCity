@@ -84,9 +84,6 @@
                     <div><i class="fa fa-caret-down"></i></div>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-8 col-xs-12">
-                <div><img src="../info/static/images/intro-image.png" class="img-responsive" alt="intro-image"></div>
-            </div>
         </div>
     </div>
 </div>
@@ -109,7 +106,7 @@
     <div class="row">
         <div class="h3 pb-5 text-center col-md-12" data-aos="fade-up">
             <h1 class="section-title">预警查询</h1>
-            <p>以表格的方式展示所有的预警消息</p>
+            <p>以图片墙的方式展示所有的预警消息</p>
         </div>
     </div>
     <div class="panel col-md-12 ">
@@ -173,7 +170,7 @@
             <div class="col-md-8 col-md-offset-2 text-center">
                 <h2 class="section-title">项目技术</h2>
                 <p class="section-para">网站基于SpringCloud+mybatis-plus搭建后端框架，nacos作为注册中心，openFeign处理远程调用，
-                    redis实现缓存，文件存储技术采用阿里的oss分布式文件管理，zuul对网关进行处理，前端由bootstrap+thymeleaf搭建，
+                    redis实现缓存，文件存储技术采用fastDFS分布式文件管理，zuul对网关进行处理，前端由bootstrap+thymeleaf搭建，
                     图片智能识别技术通过TensorFlow训练模型，并整合flask框架提供远程识别api</p>
             </div>
         </div>
@@ -261,7 +258,7 @@
                     <!-- 图片回显 -->
                     <img src="" id="img" style="width:125px;height:125px;margin: 10px 100px 0 0" alt=""
                          onerror="this.src='../info/static/images/imgDefault.png';this.onerror=null">
-                    <label style="color:red" id="isExistCoordinate">图片自带坐标不存在</label>
+                    <label style="color:red" id="isExistCoordinate">图片自带坐标不存在（图片大小不超过10MB）</label>
                 </form>
 
                 <form id="saveInfoByUser" name="saveInfoByUser" action="" method="post">
@@ -305,7 +302,7 @@
 <script src="../info/static/js/infoIndex.js"></script>
 <script th:inline="javascript">
     /*<![CDATA[*/
-    // 预警上传模态框显示
+    // 预警上传模态框显示（这块代码注释别删，不然弹出框无效）
     function showUploadModal() {
         var member = /*[[${session.member}]]*/ null;
         if (member != null) {
@@ -314,7 +311,6 @@
             swal("请先登录！", "", "warning");
         }
     }
-
     /*]]>*/
 </script>
 </body>

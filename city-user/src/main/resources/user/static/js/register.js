@@ -17,13 +17,8 @@ function register() {
         }),
         success: function (data) {
             swal.close();
-            if(data.data!=null){
-                setTimeout(function(){swal('成功', '注册成功!', 'success'); },100);
-                setTimeout(function(){window.location.href="/login"; },5000);
-
-            }else {
-                swal('登录失败', '请检查账号密码是否错误!', 'error');
-            }
+            setTimeout(function(){swal('成功', '注册成功!', 'success'); },100);
+            setTimeout(function(){window.location.href="/login"; },5000);
         },
         error: function () {
             swal.close();

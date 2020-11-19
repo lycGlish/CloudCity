@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -28,23 +27,19 @@ public class UploadController {
     private UploadServiceImpl uploadService;
 
     @PostMapping("/fastDFS/image")
-    public R fastDFS(@RequestParam("multipartFile") MultipartFile multipartFile){
+    public R fastDFS(@RequestParam("multipartFile") MultipartFile multipartFile) {
         String url = null;
         try {
+            // 图片存入服务器
             url = uploadService.saveFile(multipartFile);
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage());
         }
 
         // 获取图片自带经纬度
-        String longitude = null, latitude = null;
         Map<String, String> fileCoordinate = FileCoordinateUtil.fileCoordinateCheck(multipartFile);
-        if (fileCoordinate != null) {
-            longitude = fileCoordinate.get("longitude");
-            latitude = fileCoordinate.get("latitude");
-        } else {
-            log.info("图片不带经纬度");
-        }
+        String longitude = fileCoordinate.get("longitude");
+        String latitude = fileCoordinate.get("latitude");
 
         Map<String, String> data = new LinkedHashMap<String, String>();
 

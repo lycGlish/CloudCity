@@ -4,13 +4,17 @@ spring:
       discovery:
         server-addr: 192.168.125.128:8848
   application:
-    name: city-gateway
+    name: city-zuul
   redis:
     host: 192.168.125.128
     port: 6379
     password: lyc1289choose
   session:
     store-type: redis
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
 
 server:
   port: 88

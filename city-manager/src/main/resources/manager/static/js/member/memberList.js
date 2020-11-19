@@ -159,12 +159,6 @@ $(function () {
             switchable: true,
             width: 200
         }, {
-            field: 'password',
-            title: '密码',
-            align: 'center',
-            switchable: true,
-            width: 200
-        }, {
             field: 'memberLevel',
             title: '用户等级',
             align: 'center',

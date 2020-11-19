@@ -1,4 +1,4 @@
-package com.lyc.city.info.feign;
+package com.lyc.city.manager.feign;
 
 import com.lyc.city.utils.R;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -9,13 +9,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author lyc
- * @date 2020/8/27 10:41
+ * @date 2020/11/18 11:21
  */
 @FeignClient("city-third-party")
 public interface ImageFeignService {
-
-    @PostMapping(value = "/oss/policy", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    R policy(@RequestPart("multipartFile") MultipartFile multipartFile);
 
     @PostMapping(value = "/fastDFS/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     R fastDFS(@RequestPart("multipartFile") MultipartFile multipartFile);

@@ -21,6 +21,9 @@ import java.util.Map;
 @Service("memberService")
 public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> implements MemberService {
 
+    @Autowired
+    private MemberDao memberDao;
+
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<MemberEntity> page = this.page(
@@ -38,7 +41,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
      */
     @Override
     public List<MemberEntity> getAllMembers() {
-        return baseMapper.selectList(new QueryWrapper<>());
+        return memberDao.selectAllMembers();
     }
 
     /**
@@ -62,9 +65,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
      */
     @Override
     public MemberEntity doLogin(MemberEntity memberEntity) {
-        return baseMapper.selectOne(new QueryWrapper<MemberEntity>().lambda()
-                .eq(MemberEntity::getPhone, memberEntity.getPhone())
-                .eq(MemberEntity::getPassword, memberEntity.getPassword()));
+        return memberDao.doLogin(memberEntity);
     }
 
     /**
@@ -74,6 +75,10 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
      */
     @Override
     public void doRegister(MemberEntity memberEntity) {
+        // 默认注册为普通用户
+        memberEntity.setMemberLevel(MemberConstant.MemberLevelEnum.MEMBER_LEVEL_NORMAL.getCode());
+        // 默认账号自动激活
+        memberEntity.setStatus(MemberConstant.MemberStatusEnum.MEMBER_STATUS_ENABLE.getCode());
         memberEntity.setCreateTime(new Date());
         baseMapper.insert(memberEntity);
     }
@@ -86,7 +91,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
      */
     @Override
     public MemberEntity getMemberById(Long memberId) {
-        return baseMapper.selectById(memberId);
+        return memberDao.selectMemberById(memberId);
     }
 
     /**
@@ -97,7 +102,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
      */
     @Override
     public MemberEntity getMemberByPhone(String phone) {
-        return baseMapper.selectOne(new QueryWrapper<MemberEntity>().eq("phone",phone));
+        return memberDao.selectMemberByPhone(phone);
     }
 
     /**
@@ -108,7 +113,6 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
      */
     @Override
     public MemberEntity getMemberNameById(Long memberId) {
-        QueryWrapper<MemberEntity> wrapper = new QueryWrapper<>();
-        return baseMapper.selectOne(wrapper.select("name").eq("id",memberId));
+        return memberDao.selectMemberNameById(memberId);
     }
 }

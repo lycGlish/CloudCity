@@ -236,8 +236,8 @@ function uploadImg() {
             // 图片自带经纬度存入表单中传入后台
             $("#longitude").attr("value", data.data.longitude);
             $("#latitude").attr("value", data.data.latitude);
-            if (data.data.longitude !== "" && data.data.latitude !== "") {
-                $("#isExistCoordinate").attr("style", "color:green").attr("value", "图片自带坐标");
+            if (data.data.longitude != null && data.data.latitude != null) {
+                $("#isExistCoordinate").attr("style", "color:green").html("图片自带坐标");
             }
         },
         error: function () {

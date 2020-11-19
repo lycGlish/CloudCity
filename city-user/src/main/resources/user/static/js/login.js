@@ -15,13 +15,17 @@ function login() {
                 "password": password
             }),
             success: function (data) {
-                if (data.data.memberLevel === 0) {
-                    window.location.href = "http://localhost:88/city-info/";
-                } else if (data.data.memberLevel > 0) {
-                    window.location.href = "http://localhost:88/city-manager/";
-                } else if (data.data.status === 2) {
-                    swal('登录失败', '该账号已被封禁!', 'error');
+                if (data.data != null) {
+                    if (data.data.status === 2) {
+                        swal.close();
+                        swal('登录失败', '该账号已被封禁!', 'error');
+                    } else if (data.data.memberLevel > 0) {
+                        window.location.href = "http://localhost:88/city-manager/";
+                    } else if (data.data.memberLevel === 0) {
+                        window.location.href = "http://localhost:88/city-info/";
+                    }
                 } else {
+                    swal.close();
                     swal('登录失败', '请检查账号密码是否错误!', 'error');
                 }
             },

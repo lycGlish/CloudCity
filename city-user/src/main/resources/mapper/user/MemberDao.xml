@@ -4,7 +4,7 @@
 <mapper namespace="com.lyc.city.user.dao.MemberDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.lyc.city.entity.MemberEntity" id="memberMap">
+    <resultMap id="memberMap" type="com.lyc.city.entity.MemberEntity" >
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="password" column="password"/>
@@ -15,6 +15,34 @@
         <result property="status" column="status"/>
         <result property="createTime" column="create_time"/>
     </resultMap>
+    
+    <sql id="WithoutPasswordColumn">
+        id,name,phone,member_level,email,avatar,status,create_time
+    </sql>
+
+    <select id="selectAllMembers" resultType="com.lyc.city.entity.MemberEntity">
+        select <include refid="WithoutPasswordColumn"/> from ums_member
+    </select>
+
+    <select id="doLogin" resultType="com.lyc.city.entity.MemberEntity">
+        select <include refid="WithoutPasswordColumn"/> from ums_member
+        where phone = #{memberEntity.phone} and password = #{memberEntity.password}
+    </select>
+
+    <select id="selectMemberById" resultType="com.lyc.city.entity.MemberEntity">
+        select <include refid="WithoutPasswordColumn"/> from ums_member
+        where id = #{memberId}
+    </select>
+
+    <select id="selectMemberByPhone" resultType="com.lyc.city.entity.MemberEntity">
+        select <include refid="WithoutPasswordColumn"/> from ums_member
+        where phone = #{memberEntity.phone}
+    </select>
+
+    <select id="selectMemberNameById" resultType="com.lyc.city.entity.MemberEntity">
+        select ums_member.name from ums_member
+        where id = #{memberId}
+    </select>
 
 
 </mapper>

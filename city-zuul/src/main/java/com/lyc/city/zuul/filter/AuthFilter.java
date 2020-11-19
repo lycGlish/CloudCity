@@ -27,6 +27,7 @@ public class AuthFilter extends ZuulFilter {
             case "/city-manager/member":
             case "/city-manager/systemMenu":
             case "/city-manager/camera":
+            case "/city-manager/memberInfo":
                 return true;
             default:
                 return false;

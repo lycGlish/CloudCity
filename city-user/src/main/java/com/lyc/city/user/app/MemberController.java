@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import com.lyc.city.constant.MemberConstant;
 import com.lyc.city.entity.MemberEntity;
 import com.lyc.city.user.service.MemberService;
 import com.lyc.city.utils.PageUtils;
@@ -28,9 +29,9 @@ public class MemberController {
     private MemberService memberService;
 
     @GetMapping("/getMemberByPhone")
-    public R getMemberByPhone(@RequestParam("phone") String phone){
+    public R getMemberByPhone(@RequestParam("phone") String phone) {
         MemberEntity memberEntity = memberService.getMemberByPhone(phone);
-        return R.ok().put("data",memberEntity);
+        return R.ok().put("data", memberEntity);
     }
 
     @GetMapping("/count")
@@ -63,8 +64,11 @@ public class MemberController {
         if (memberInfo != null) {
             HttpSession session = request.getSession();
             session.setAttribute("member", memberInfo);
+            return R.ok().put("data", memberInfo);
+        } else {
+            return R.error("登录失败，检查账号密码！");
         }
-        return R.ok().put("data", memberInfo);
+
     }
 
     @GetMapping("/deleteLogicMember/{memberId}")

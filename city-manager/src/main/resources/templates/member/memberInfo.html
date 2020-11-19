@@ -114,7 +114,6 @@
                             </ul>
                         </div>
                     </li>
-
                     <li class="mx-4 mt-2">
                         <a href="https://github.com/lycGlish/CloudCity" class="btn btn-primary btn-block"><span
                                 class="btn-label mr-2"> <i class="fa fa-heart"></i> </span>加入我们</a>
@@ -129,98 +128,60 @@
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">
-                <div class="mt-2 mb-4">
-                    <h2 class="text-white pb-2">欢迎回来, <span th:text="${session.member.name}"></span>!</h2>
-                </div>
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="card card-dark bg-primary-gradient">
-                            <div class="card-body pb-0">
-                                <h2 class="mb-2">2</h2>
-                                <p>在线人数</p>
-                                <div class="pull-in sparkline-fix chart-as-background">
-                                    <div id="lineChart">
-                                        <canvas width="327" height="70" style="display:inline-block;width:327px;
-                                         height:70px;vertical-align:top;">
-                                        </canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card card-dark bg-secondary-gradient">
-                            <div class="card-body pb-0">
-                                <h2 class="mb-2" th:text="${memberCount}"></h2>
-                                <p>注册用户</p>
-                                <div class="pull-in sparkline-fix chart-as-background">
-                                    <div id="lineChart2">
-                                        <canvas width="327" height="70"
-                                                style="display:inline-block;width:327px; height:0;vertical-align:top;">
-                                        </canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card card-dark bg-success2">
-                            <div class="card-body pb-0">
-                                <h2 class="mb-2" th:text="${infoCount}"></h2>
-                                <p>历史数据</p>
-                                <div class="pull-in sparkline-fix chart-as-background">
-                                    <div id="lineChart3">
-                                        <canvas width="327" height="70"
-                                                style="display:inline-block;width:327px;height:70px;vertical-align:top;">
-                                        </canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title">数据统计</div>
+                                <div class="card-title">个人信息</div>
                             </div>
                             <div class="card-body">
-                                <div class="chart-container">
-                                    <canvas id="barChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card card-secondary">
-                            <div class="card-header">
-                                <div class="card-head-row">
-                                    <div class="card-title">待完成的任务</div>
-                                    <div class="card-tools">
-                                        <ul class="nav nav-pills nav-secondary nav-pills-no-bd nav-sm" id="pills-tab"
-                                            role="tablist">
-                                            <li class="nav-item">
-                                                <button class="nav-link" id="pills-today"
-                                                        onclick="addTask();">新增
-                                                </button>
-                                            </li>
-                                        </ul>
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-4">
+                                        <form>
+                                            <!-- 用户id -->
+                                            <input type="text" id="id" name="id" style="display:none"
+                                                   th:value="${session.member.id}">
+                                            <!-- 图片url -->
+                                            <input type="text" id="avatar" name="avatar" style="display:none"
+                                                   th:value="${session.member.avatar}">
+
+                                            <!-- 展示列表 -->
+                                            <div class="form-group">
+                                                <label class="control-label">
+                                                    手机号
+                                                </label>
+                                                <p class="form-control-static" th:text="${session.member.phone}"></p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="name">用户名</label>
+                                                <input type="text" class="form-control" id="name"
+                                                       name="name" th:value="${session.member.name}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">邮箱</label>
+                                                <input type="email" class="form-control" id="email"
+                                                       name="email" th:value="${session.member.email}">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6 col-lg-4">
+                                        <form id="formTag" method="post" enctype="multipart/form-data">
+                                            <div class="form-group">
+                                                <label for="multipartFile">头像</label>
+                                                <input type="file" name="multipartFile" id="multipartFile"
+                                                       onchange="uploadImg()">
+                                                <small id="avatarHint" class="form-text text-muted">
+                                                    图片大小不超过10MB</small>
+                                            </div>
+                                            <img th:src="${session.member.avatar}" id="img"
+                                                 style="width:200px;height:200px;margin: 10px 100px 0 0" alt="">
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body pb-0">
-                                <div class="mb-4 mt-2">
-                                    <ul>
-                                        <li th:each="task:${allTask}">
-                                            <button th:onclick="'javascript:accomplish('+${task.taskId}+')'"
-                                                    type="button" class="btn btn-icon btn-round btn-success btn-xs">
-                                                <i class="fa fa-check"></i>
-                                            </button>
-                                            <span th:text="${task.taskName}"></span>
-                                        </li>
-                                    </ul>
-                                </div>
+                            <div class="card-action">
+                                <button class="btn btn-success" onclick="updateMemberInfo()">修改资料</button>
+                                <button class="btn btn-danger" onclick="showModel()">重置密码</button>
                             </div>
                         </div>
                     </div>
@@ -230,14 +191,14 @@
     </div>
     <!-- 主界面end -->
 
-    <!-- 新增任务modal -->
-    <div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- 重置密码modal -->
+    <div class="modal fade" id="resetModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header no-bd">
                     <h5 class="modal-title">
-                        <span class="fw-mediumbold">新</span>
-                        <span class="fw-light">增</span>
+                        <span class="fw-mediumbold">重</span>
+                        <span class="fw-light">置</span>
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -245,23 +206,16 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <input id="infoId" type="text" name="infoId" style="display:none">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group form-group-default">
-                                    <p class="small">任务名称</p>
-                                    <input id="taskName" type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group form-group-default">
-                                    <p class="small">任务描述</p>
-                                    <input id="taskDescription" type="text" class="form-control">
+                                    <p class="small">新密码</p>
+                                    <input id="password" type="password" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <button type="button" id="editButton" class="btn btn-primary" style="margin: 0 0 0 300px;"
-                                onclick="saveTask();">新增
+                                onclick="resetPassword();">重置
                         </button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
                     </form>
@@ -269,7 +223,7 @@
             </div>
         </div>
     </div>
-    <!-- 新增任务end -->
+    <!-- 修改end -->
 </div>
 <script src="../manager/static/js/jquery.3.2.1.min.js"></script>
 <script src="../manager/static/js/popper.min.js"></script>
@@ -284,6 +238,6 @@
 <script src="../manager/static/js/plugin/dataTables/dataTables.min.js"></script>
 <script src="../manager/static/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
 <script src="../manager/static/js/plugin/sweetAlert/sweetAlert.min.js"></script>
-<script src="../manager/static/js/managerIndex.js"></script>
+<script src="../manager/static/js/member/memberInfo.js"></script>
 </body>
 </html>

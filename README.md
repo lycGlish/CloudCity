@@ -2,10 +2,11 @@
 
 ## 版本更新  
 
-    远程识别端口修复  
-    图片上传文件管理转为fastDFS  
-    预警上传坐标bug修复  
-    上传人员功能新增  
+    图片上传窗口优化  
+    单独图片上传大小加大到10MB  
+    读取图片自带坐标bug修复  
+    用户模块密码字段屏蔽  
+    新增用户信息修改页面  
 
 ## 接口模块  
 
@@ -44,12 +45,14 @@
  *  bootstrapTable  
  *  jquery  
  *  sweetAlert  
+ *  Echart  
 
 ### 其他技术  
 
  *  linux+docker  
  *  oss  
  *  python+TensorFlow+flask  
+ *  fastDFS  
  
 ## 项目效果  
 
