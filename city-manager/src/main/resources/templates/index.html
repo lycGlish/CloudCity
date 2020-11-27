@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>后台管理</title>
+    <title>后台管理首页</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
     <link rel="icon" href="../manager/static/images/logo.jpg" type="image/x-icon"/>
 
@@ -53,15 +53,14 @@
                     <li class="nav-item dropdown hidden-caret">
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                             <div class="avatar-sm">
-                                <img th:src="${session.member.avatar}" alt="..."
-                                     class="avatar-img rounded-circle">
+                                <img th:src="${session.member.avatar}" alt="avatar" class="avatar-img rounded-circle">
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-user animated fadeIn">
                             <div class="dropdown-user-scroll scrollbar-outer">
                                 <div class="user-box">
-                                    <div class="avatar-lg"><img th:src="${session.member.avatar}"
-                                                                alt="image profile" class="avatar-img rounded">
+                                    <div class="avatar-lg">
+                                        <img th:src="${session.member.avatar}" alt="avatar" class="avatar-img rounded">
                                     </div>
                                     <div class="u-text">
                                         <h4 th:text="${session.member.name}"></h4>

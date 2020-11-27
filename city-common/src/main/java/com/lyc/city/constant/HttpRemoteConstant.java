@@ -17,7 +17,6 @@ public class HttpRemoteConstant {
             this.msg = msg;
         }
 
-
         public int getCode() {
             return code;
         }

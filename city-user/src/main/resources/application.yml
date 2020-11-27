@@ -51,4 +51,23 @@ feign:
         connectTimeout: 30000
         readTimeout: 30000
 
+kaptcha:
+  height: 50
+  width: 200
+  content:
+    length: 4
+    source: 0123456789abcdefghijklmnopqrstuvwxyz
+    space: 2
+  font:
+    color: blue
+    name: 宋体,楷体,微软雅黑
+    size: 40
+  background-color:
+    from: lightGray
+    to: white
+  border:
+    enabled: true
+    color: black
+    thickness: 1
+
 

@@ -160,11 +160,11 @@ function uploadInfo() {
             swal.close();
             console.log("data is :" + data);
             setTimeout(function () {
-                swal("成功", "预警上传成功！", "success");
+                swal("成功", "预警上传成功！自动刷新中...", "success",{buttons: false});
             }, 100);
             setTimeout(function () {
                 window.location.reload();
-            }, 5000);
+            }, 3000);
         },
         error: function () {
             swal.close();

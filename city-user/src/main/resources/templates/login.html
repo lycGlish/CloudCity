@@ -35,12 +35,12 @@
                 </div>
 
                 <div class="text-right p-t-8 p-b-31">
-                    <a href="javascript:build()">忘记密码？</a>
+<!--                    <a href="javascript:build()">忘记密码？</a>-->
                 </div>
 
                 <div class="wrap-login100-form-btn">
                     <div class="login100-form-bgbtn"></div>
-                    <button type="button" class="login100-form-btn" onclick="login();">登 录</button>
+                    <button type="button" class="login100-form-btn" onclick="verification();">登 录</button>
                 </div>
 
                 <div class="txt1 text-center p-t-54 p-b-20">
@@ -68,7 +68,28 @@
         </div>
     </div>
 </div>
+<div class="modal" tabindex="-1" role="dialog" id="verificationModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">登录验证</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input id="verificationCode" name="verificationCode" type="text" placeholder="请输入验证码">
+                <img alt="验证码" onclick="this.src='/city-user/render?d='+new Date()*1" src="/city-user/render"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" onclick="login()">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="../user/static/js/jquery-3.2.1.min.js"></script>
+<script src="../user/static/js/bootstrap.min.js"></script>
 <script src="../user/static/js/sweetAlert.min.js"></script>
 <script src="../user/static/js/login.js"></script>
 </body>
